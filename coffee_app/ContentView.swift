@@ -1,11 +1,4 @@
-//
-//  ContentView.swift
-//  coffee_app
-//
-//  Created by STUDENT on 9/10/25.
-//
-
-import SwiftUI
+ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
