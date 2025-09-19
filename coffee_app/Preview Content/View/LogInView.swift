@@ -26,7 +26,7 @@ struct LogInView: View {
                     CustomTextField(
                         text: $password,
                         hintText: "Password",
-                        icon: Image(systemName: "lock.fill"), iconTextPadding: 20)
+                        icon: Image(systemName: "lock.fill"))
                         .padding(.bottom, 8)
                     
                     HStack {
