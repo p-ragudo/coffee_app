@@ -12,8 +12,9 @@ struct BeanType: Identifiable {
 }
 
 class BeanTypeProvider {
-    static func getCoffeeItems() -> [BeanType] {
+    static func getItems() -> [BeanType] {
         return [
+            // REPLACE EACH IMAGE AND NAVIGATION DESTINATION TO THE APPROPRIATE ONE
             BeanType(image: "bean_card", name: "Arabica", desc: "Sweet and classic, perfect for every taste", popularity: PopularityLevel.top_favorite, rating: 5.0, navigateTo: AnyView(WelcomeView())),
             BeanType(image: "bean_card", name: "Robusta", desc: "Strong & bold tone, perfect for espressos", popularity: PopularityLevel.trending, rating: 4.8, navigateTo: AnyView(WelcomeView())),
             BeanType(image: "bean_card", name: "Liberica", desc: "Filipino-style kapeng barako", popularity: PopularityLevel.rising, rating: 4.5, navigateTo: AnyView(WelcomeView())),

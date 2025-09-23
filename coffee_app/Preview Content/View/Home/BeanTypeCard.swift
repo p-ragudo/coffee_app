@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ProductFeatureCard: View {
+struct BeanTypeCard: View {
     var image: String
     var name: String
     var desc: String
@@ -13,7 +13,8 @@ struct ProductFeatureCard: View {
          desc: String,
          popularity: String,
          rating: Double,
-         navigateTo: AnyView) {
+         navigateTo: AnyView
+    ) {
         self.image = image
         self.name = name
         self.desc = desc
@@ -25,19 +26,21 @@ struct ProductFeatureCard: View {
     var body: some View {
         NavigationLink(destination: navigateTo) {
             VStack(alignment: .leading){
-                Image("bean_card")
+                Image(image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 170)
                 
                 Text(name)
                     .font(.system(size: 30, weight: .medium, design: .serif))
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.white)
                 
                 Text(desc)
                     .font(.system(size: 14, weight: .light, design: .serif))
-                    .foregroundStyle(.black)
-                    .lineLimit(nil)
+                    .foregroundStyle(.white)
+                    .truncationMode(.tail)
+                    .multilineTextAlignment(.leading)
+                    .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, 12)
@@ -60,7 +63,7 @@ struct ProductFeatureCard: View {
 }
 
 #Preview {
-    ProductFeatureCard(
+    BeanTypeCard(
         image: "bean_card",
         name: "Arabica",
         desc: "Sweet and classic, perfect for every taste",

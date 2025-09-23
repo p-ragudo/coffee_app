@@ -6,6 +6,7 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ScrollView{
+                // HEADER
                 ZStack(alignment: .topLeading) {
                     
                     Image("home_bg")
@@ -28,6 +29,7 @@ struct HomeView: View {
                 .padding(.bottom, 20)
                 
                 VStack {
+                    // BEANS SECTION
                     Text("Beans")
                         .font(.system(size: 30, weight: .semibold, design: .serif))
                         .foregroundStyle(.white)
@@ -35,13 +37,13 @@ struct HomeView: View {
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     Text("Choose from our collection")
-                        .font(.system(size: 16, weight: .light, design: .serif))
+                        .font(.system(size: 15, weight: .light, design: .serif))
                         .foregroundStyle(.white)
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
                     ProductGridBuilderView(items: controller.beanTypes) { beanType in
-                        ProductFeatureCard(
+                        BeanTypeCard(
                             image: beanType.image,
                             name: beanType.name,
                             desc: beanType.desc,
@@ -52,7 +54,91 @@ struct HomeView: View {
                     }
                     .padding(.bottom, 40)
                     
+                    // REPLACE NAVIGATION DESTINATION
                     MoreButton(navigateTo: AnyView(WelcomeView()))
+                        .padding(.bottom, 50)
+                    
+                    
+                    // FARMS SECTION
+                    Text("Farms")
+                        .font(.system(size: 30, weight: .semibold, design: .serif))
+                        .foregroundStyle(.white)
+                        .padding(.top, 5)
+                        .padding(.horizontal)
+                    Text("Our partner local farms")
+                        .font(.system(size: 15, weight: .light, design: .serif))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal)
+                        .padding(.bottom, 10)
+                    
+                    Image("farm_card")
+                        .resizable()
+                        .scaledToFit()
+                        .padding(.bottom, 10)
+                        
+                    Text("Our partner local farms")
+                        .font(.system(size: 16, weight: .light, design: .serif))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal)
+                        .padding(.bottom, 40)
+                    
+                    // REPLACE NAVIGATION DESTINATION
+                    MoreButton(navigateTo: AnyView(WelcomeView()))
+                        .padding(.bottom, 50)
+                    
+                    
+                    // STORE SECTION
+                    Text("Store")
+                        .font(.system(size: 30, weight: .semibold, design: .serif))
+                        .foregroundStyle(.white)
+                        .padding(.top, 5)
+                        .padding(.horizontal)
+                    Text("Accessories and Machinery\nfor your brewing needs")
+                        .font(.system(size: 15, weight: .light, design: .serif))
+                        .foregroundStyle(.white)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                        .padding(.bottom, 10)
+                    
+                    Image("store_bg")
+                        .resizable()
+                        .scaledToFit()
+                        .padding(.bottom, 15)
+                    
+                    Text("All you need for a\ngood cup of coffee")
+                        .font(.system(size: 15, weight: .light, design: .serif))
+                        .foregroundStyle(.white)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                        .padding(.bottom, 15)
+                    
+                    ProductGridBuilderView(items: controller.storeProductTypes) { product in
+                        ProductTypeCard(
+                            image: product.image,
+                            name: product.name,
+                            desc: product.desc,
+                            type: product.type,
+                            navigateTo: product.navigateTo
+                        )
+                    }
+                    .padding(.bottom, 40)
+                    
+                    // REPLACE NAVIGATION DESTINATION
+                    MoreButton(navigateTo: AnyView(WelcomeView()))
+                        .padding(.bottom, 80)
+                    
+                    // FOOTER
+                    Image("footer_logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 50)
+                    
+                    Text("Fresh local beans\nDelivered straight to you")
+                        .font(.system(size: 15, weight: .light, design: .serif))
+                        .foregroundStyle(.white)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                        .padding(.bottom, 15)
                     
                 } // VStack
                 

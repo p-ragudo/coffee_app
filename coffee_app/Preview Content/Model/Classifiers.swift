@@ -5,3 +5,9 @@ struct PopularityLevel {
     static let trending = "Trending"
     static let top_favorite = "Top Favorite"
 }
+
+struct ProductType {
+    static let essentials = "Essentials"
+    static let luxury = "Luxury"
+    static let accessories = "Accessories"
+}
