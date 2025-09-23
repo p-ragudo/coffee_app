@@ -45,7 +45,7 @@ struct LogInView: View {
                     .padding(.bottom, 40)
                     
                     NavigationLink(
-                        destination: LogInView(),
+                        destination: HomeView(),
                         label: {
                             Text("Log In")
                                 .font(.system(size: 18, weight: .medium, design: .serif))

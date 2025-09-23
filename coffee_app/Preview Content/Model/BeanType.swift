@@ -15,10 +15,10 @@ class BeanTypeProvider {
     static func getItems() -> [BeanType] {
         return [
             // REPLACE EACH IMAGE AND NAVIGATION DESTINATION TO THE APPROPRIATE ONE
-            BeanType(image: "bean_card", name: "Arabica", desc: "Sweet and classic, perfect for every taste", popularity: PopularityLevel.top_favorite, rating: 5.0, navigateTo: AnyView(WelcomeView())),
-            BeanType(image: "bean_card", name: "Robusta", desc: "Strong & bold tone, perfect for espressos", popularity: PopularityLevel.trending, rating: 4.8, navigateTo: AnyView(WelcomeView())),
-            BeanType(image: "bean_card", name: "Liberica", desc: "Filipino-style kapeng barako", popularity: PopularityLevel.rising, rating: 4.5, navigateTo: AnyView(WelcomeView())),
-            BeanType(image: "bean_card", name: "Excelsa", desc: "Unique and fruity, something new", popularity: PopularityLevel.spotlight, rating: 4.2, navigateTo: AnyView(WelcomeView())),
+            BeanType(image: "arabica_card", name: "Arabica", desc: "Sweet and classic, perfect for every taste", popularity: PopularityLevel.top_favorite, rating: 5.0, navigateTo: AnyView(WelcomeView())),
+            BeanType(image: "robusta_card", name: "Robusta", desc: "Strong & bold tone, perfect for espressos", popularity: PopularityLevel.trending, rating: 4.8, navigateTo: AnyView(WelcomeView())),
+            BeanType(image: "liberica_card", name: "Liberica", desc: "Filipino-style kapeng barako", popularity: PopularityLevel.rising, rating: 4.5, navigateTo: AnyView(WelcomeView())),
+            BeanType(image: "excelsa_card", name: "Excelsa", desc: "Unique and fruity, something new", popularity: PopularityLevel.spotlight, rating: 4.2, navigateTo: AnyView(WelcomeView())),
         ]
     }
 }

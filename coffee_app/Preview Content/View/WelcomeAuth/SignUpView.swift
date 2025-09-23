@@ -51,7 +51,7 @@ struct SignUpView: View {
                     .padding(.bottom, 40)
                     
                     NavigationLink(
-                        destination: SignUpView(),
+                        destination: HomeView(),
                         label: {
                             Text("Sign Up")
                                 .font(.system(size: 18, weight: .medium, design: .serif))

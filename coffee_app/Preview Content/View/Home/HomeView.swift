@@ -3,6 +3,10 @@ import SwiftUI
 struct HomeView: View {
     var controller: Controller
     
+    init() {
+        controller = Controller()
+    }
+    
     var body: some View {
         NavigationStack {
             ScrollView{
@@ -147,6 +151,7 @@ struct HomeView: View {
             .edgesIgnoringSafeArea(.top)
             
         } // NavigationStack
+        .navigationBarHidden(true)
     }
 }
 
@@ -167,6 +172,5 @@ struct MoreButton: View {
 }
 
 #Preview {
-    var controller = Controller()
-    HomeView(controller: controller)
+    HomeView()
 }
