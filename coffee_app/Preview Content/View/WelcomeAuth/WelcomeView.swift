@@ -13,14 +13,13 @@ struct WelcomeView: View {
                 
                 Text("Brewing Brilliance:")
                     .foregroundStyle(.white)
-                    .font(.title)
-                    .fontWeight(.bold)
+                    .font(.system(size: 32, weight: .medium, design: .serif))
                 Text("Your Coffee, Your Way")
                     .foregroundStyle(.white)
-                    .font(.title)
-                    .fontWeight(.bold)
+                    .font(.system(size: 32, weight: .medium, design: .serif))
                     .padding(.bottom, 14)
                 Text("From coffee farms straight to your home\nchoose a wide variety of beans and more")
+                    .font(.system(size: 18, weight: .regular, design: .serif))
                     .foregroundStyle(.white)
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 24)
@@ -29,6 +28,7 @@ struct WelcomeView: View {
                     destination: SignUpView(),
                     label: {
                         Text("Get Started")
+                            .font(.system(size: 18, weight: .regular, design: .serif))
                             .frame(maxWidth: .infinity)
                             .foregroundStyle(.white)
                             .padding(.vertical, 15)

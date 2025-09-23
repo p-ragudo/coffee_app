@@ -1,7 +1,8 @@
 import SwiftUI
 
-struct LogInView: View {
-    @State var usernameEmail: String = ""
+struct SignUpView: View {
+    @State var username: String = ""
+    @State var email: String = ""
     @State var password: String = ""
     
     var body: some View {
@@ -12,43 +13,48 @@ struct LogInView: View {
                 VStack {
                     Spacer()
                     
-                    Text("Log In")
+                    Text("Create an Account")
+                        .font(.system(size: 32, weight: .medium, design: .serif))
                         .foregroundStyle(.white)
-                        .font(.title)
-                        .fontWeight(.bold)
                         .padding(40)
                     
-                    CustomTextField(
-                        text: $usernameEmail,
-                        hintText: "Email / Username",
+                    AuthTextField(
+                        text: $username,
+                        hintText: "Username",
                         icon: Image(systemName: "person.fill"))
                         .padding(.bottom, 8)
-                    CustomTextField(
+                    AuthTextField(
+                        text: $email,
+                        hintText: "Email",
+                        icon: Image(systemName: "envelope.fill"))
+                        .padding(.bottom, 8)
+                    AuthTextField(
                         text: $password,
                         hintText: "Password",
                         icon: Image(systemName: "lock.fill"))
                         .padding(.bottom, 8)
                     
                     HStack {
-                        Text("Don't have an account? ")
+                        Text("Already have an account? ")
+                            .font(.system(size: 15, weight: .regular, design: .serif))
                             .foregroundStyle(.white)
-                            .font(.subheadline)
                         
                         NavigationLink(
-                            destination: SignUpView(),
+                            destination: LogInView(),
                             label: {
-                                Text("Sign Up")
+                                Text("Login")
+                                    .font(.system(size: 15, weight: .regular, design: .serif))
                                     .foregroundStyle(.blue)
-                                    .font(.subheadline)
                             }
                         )
                     }
                     .padding(.bottom, 40)
                     
                     NavigationLink(
-                        destination: LogInView(),
+                        destination: SignUpView(),
                         label: {
-                            Text("Log In")
+                            Text("Sign Up")
+                                .font(.system(size: 18, weight: .medium, design: .serif))
                                 .frame(maxWidth: .infinity)
                                 .foregroundStyle(.white)
                                 .padding(.vertical, 15)
@@ -69,5 +75,5 @@ struct LogInView: View {
 }
 
 #Preview {
-    LogInView()
+    SignUpView()
 }

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CustomTextField: View {
+struct AuthTextField: View {
     @Binding var text: String
     let hintText: String
     let icon: Image
@@ -20,6 +20,7 @@ struct CustomTextField: View {
                 
                 if text.isEmpty {
                     Text(hintText)
+                        .font(.system(size: 16, weight: .light, design: .serif))
                         .foregroundStyle(.white)
                         .padding(.leading, 0)
                         .padding(.vertical, 15)
@@ -28,6 +29,7 @@ struct CustomTextField: View {
             
             // text field
             TextField("", text: $text)
+                .font(.system(size: 16, weight: .light, design: .serif))
                 .foregroundStyle(.white)
                 .padding(.vertical, 15)
                 .disableAutocorrection(true)
