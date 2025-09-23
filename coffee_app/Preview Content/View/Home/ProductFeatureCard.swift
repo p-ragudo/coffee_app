@@ -5,12 +5,14 @@ struct ProductFeatureCard: View {
     var desc: String
     var popularity: String
     var rating: Int
+    var navigateTo: any View
     
-    init(name: String, desc: String, popularity: String, rating: Int) {
+    init(name: String, desc: String, popularity: String, rating: Int, navigateTo: any View) {
         self.name = name
         self.desc = desc
         self.popularity = popularity
         self.rating = rating
+        self.navigateTo = navigateTo
     }
     
     var body: some View {
@@ -53,6 +55,7 @@ struct ProductFeatureCard: View {
         name: "Arabica",
         desc: "Sweet and classic, perfect for every taste",
         popularity: "Popularity",
-        rating: 1
+        rating: 1,
+        navigateTo: WelcomeView()
     )
 }

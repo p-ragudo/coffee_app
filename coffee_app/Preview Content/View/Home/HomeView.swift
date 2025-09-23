@@ -3,33 +3,42 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack {
+            ScrollView{
+                VStack(alignment: .leading) {
                     ZStack(alignment: .topLeading) {
                         
                         Image("home_bg")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                            .edgesIgnoringSafeArea(.all)
+                            .frame(width: UIScreen.main.bounds.width)
                         
-                        Text("Coffee App")
-                            .font(.system(size: 40, weight: .semibold, design: .serif))
-                            .foregroundStyle(.white)
-                            .offset(x: 16, y: 260)
-                        Text("Philippine Coffee Beans")
-                            .font(.system(size: 40, weight: .semibold, design: .serif))
-                            .foregroundStyle(.white)
-                            .offset(x: 16, y: 300)
+                        VStack {
+                            Text("Coffee App")
+                                .font(.system(size: 40, weight: .semibold, design: .serif))
+                                .foregroundStyle(.white)
+                            Text("Philippine Coffee Beans")
+                                .font(.system(size: 18, weight: .medium, design: .serif))
+                                .foregroundStyle(.white)
+                        }
+                        .padding(.top, 220)
+                        .padding(.horizontal)
                         
                     } // ZStack
+                    
+                    Text("Beans")
+                        .font(.system(size: 30, weight: .semibold, design: .serif))
+                        .foregroundStyle(.white)
+                        .padding(.top, 5)
+                        .padding(.horizontal)
+                    
+                    
                     
                 } // VStack
                 .padding()
                 
             } // ScrollView
             .background(.black)
-            .edgesIgnoringSafeArea(.all)
+            .edgesIgnoringSafeArea(.top)
             
         } // NavigationStack
     }
