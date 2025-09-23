@@ -1,9 +1,9 @@
 import SwiftUI
 
-class Controller: ObservableObject {
-    @Published var beanTypes: [BeanType]
+class Controller {
+    var beanTypes: [BeanType]
     
     init() {
-        self.beanTypes = 
+        self.beanTypes = BeanTypeProvider.getCoffeeItems()
     }
 }

@@ -4,10 +4,10 @@ struct ProductFeatureCard: View {
     var name: String
     var desc: String
     var popularity: String
-    var rating: Int
+    var rating: Double
     var navigateTo: any View
     
-    init(name: String, desc: String, popularity: String, rating: Int, navigateTo: any View) {
+    init(name: String, desc: String, popularity: String, rating: Double, navigateTo: any View) {
         self.name = name
         self.desc = desc
         self.popularity = popularity
@@ -23,12 +23,12 @@ struct ProductFeatureCard: View {
                 .frame(width: 161, height: 201)
             
             Text(name)
-                .font(.title)
-                .fontWeight(.bold)
+                .font(.system(size: 30, weight: .bold, design: .serif))
+                .foregroundStyle(.white)
             
             Text(desc)
-                .font(.subheadline)
-                .fontWeight(.regular)
+                .font(.system(size: 15, weight: .light, design: .serif))
+                .foregroundStyle(.white)
                 .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
