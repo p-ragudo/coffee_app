@@ -25,6 +25,7 @@ struct HomeView: View {
                     .padding(.horizontal)
                     
                 } // ZStack
+                .padding(.bottom, 20)
                 
                 VStack {
                     Text("Beans")
@@ -32,9 +33,16 @@ struct HomeView: View {
                         .foregroundStyle(.white)
                         .padding(.top, 5)
                         .padding(.horizontal)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text("Choose from our collection")
+                        .font(.system(size: 16, weight: .light, design: .serif))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    GridBuilderView(items: controller.beanTypes) { beanType in
+                    ProductGridBuilderView(items: controller.beanTypes) { beanType in
                         ProductFeatureCard(
+                            image: beanType.image,
                             name: beanType.name,
                             desc: beanType.desc,
                             popularity: beanType.popularity,
@@ -42,7 +50,9 @@ struct HomeView: View {
                             navigateTo: beanType.navigateTo
                         )
                     }
-                    .frame(maxHeight: .infinity)
+                    .padding(.bottom, 40)
+                    
+                    MoreButton(navigateTo: AnyView(WelcomeView()))
                     
                 } // VStack
                 
@@ -51,6 +61,22 @@ struct HomeView: View {
             .edgesIgnoringSafeArea(.top)
             
         } // NavigationStack
+    }
+}
+
+struct MoreButton: View {
+    var navigateTo: AnyView
+    
+    var body: some View {
+        NavigationLink(destination: navigateTo) {
+            Text("More")
+                .font(.system(size: 18, design: .serif))
+                .foregroundStyle(.white)
+                .padding(.vertical, 10)
+                .padding(.horizontal, 30)
+                .background(ThemeColor.green)
+                .cornerRadius(4)
+        }
     }
 }
 

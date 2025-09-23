@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct GridBuilderView<Item, Content: View>: View where Item: Identifiable {
+struct ProductGridBuilderView<Item, Content: View>: View where Item: Identifiable {
     var items: [Item]
     var content: (Item) -> Content
 
@@ -11,9 +11,9 @@ struct GridBuilderView<Item, Content: View>: View where Item: Identifiable {
     
     var body: some View {
         LazyVGrid(columns: [
-            GridItem(.flexible(), spacing: 5),
+            GridItem(.flexible(), spacing: 15),
             GridItem(.flexible())
-        ], spacing: 16) {
+        ], spacing: 30) {
             ForEach(items) { item in
                 content(item)
             }
