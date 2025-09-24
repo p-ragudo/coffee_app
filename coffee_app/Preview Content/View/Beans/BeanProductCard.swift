@@ -1,23 +1,24 @@
+
 import SwiftUI
 
-struct BeanTypeCard: View {
+struct BeanProductCard: View {
     var image: String
     var name: String
-    var desc: String
+    var price: Double
     var popularity: String
     var rating: Double
     var navigateTo: AnyView
     
     init(image: String,
          name: String,
-         desc: String,
+         price: Double,
          popularity: String,
          rating: Double,
          navigateTo: AnyView
     ) {
         self.image = image
         self.name = name
-        self.desc = desc
+        self.price = price
         self.popularity = popularity
         self.rating = rating
         self.navigateTo = navigateTo
@@ -32,17 +33,24 @@ struct BeanTypeCard: View {
                     .frame(width: 170)
                 
                 Text(name)
-                    .font(.system(size: 30, weight: .medium, design: .serif))
-                    .foregroundStyle(.white)
-                
-                Text(desc)
-                    .font(.system(size: 14, weight: .light, design: .serif))
-                    .foregroundStyle(.white)
+                    .font(.system(size: 17, weight: .semibold, design: .serif))
+                    .foregroundStyle(.black)
+                    .lineLimit(2)
                     .truncationMode(.tail)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.bottom, 12)
+                    .padding(.bottom, 2)
+            
+                Text("₱ \(String(format: "%.2f", price))")
+                    .font(.system(size: 22, weight: .semibold, design: .serif))
+                    .foregroundStyle(ThemeColor.brown)
+                    .lineLimit(2)
+                    .truncationMode(.tail)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.bottom, 2)
                 
                 HStack{
                     Text(popularity)
@@ -62,10 +70,10 @@ struct BeanTypeCard: View {
 }
 
 #Preview {
-    BeanTypeCard(
-        image: "bean_card",
-        name: "Arabica",
-        desc: "Sweet and classic, perfect for every taste",
+    BeanProductCard(
+        image: "arabica_card",
+        name: "Bean product name goes here in this card",
+        price: 600,
         popularity: "Popularity",
         rating: 1,
         navigateTo: AnyView(WelcomeView())

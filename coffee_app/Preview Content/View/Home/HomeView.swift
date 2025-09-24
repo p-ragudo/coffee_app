@@ -46,7 +46,7 @@ struct HomeView: View {
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    ProductGridBuilderView(items: controller.beanTypes) { beanType in
+                    GridBuilderView(items: controller.beanTypes, content: { beanType in
                         BeanTypeCard(
                             image: beanType.image,
                             name: beanType.name,
@@ -55,7 +55,7 @@ struct HomeView: View {
                             rating: beanType.rating,
                             navigateTo: beanType.navigateTo
                         )
-                    }
+                    }, hSpacing: 16, vSpacing: 30)
                     .padding(.bottom, 40)
                     
                     // REPLACE NAVIGATION DESTINATION
@@ -116,7 +116,7 @@ struct HomeView: View {
                         .padding(.horizontal)
                         .padding(.bottom, 15)
                     
-                    ProductGridBuilderView(items: controller.storeProductTypes) { product in
+                    GridBuilderView(items: controller.storeProductTypes, content: { product in
                         ProductTypeCard(
                             image: product.image,
                             name: product.name,
@@ -124,7 +124,7 @@ struct HomeView: View {
                             type: product.type,
                             navigateTo: product.navigateTo
                         )
-                    }
+                    }, hSpacing: 16, vSpacing: 30)
                     .padding(.bottom, 40)
                     
                     // REPLACE NAVIGATION DESTINATION
