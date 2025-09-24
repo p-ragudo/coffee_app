@@ -1,12 +1,7 @@
 import SwiftUI
 
 struct BeansView: View {
-    var controller: Controller
-    
-    init(controller: Controller) {
-        self.controller = controller
-    }
-    
+    // ADD NAVIGATION TO BEAN TYPES, DISCOVER, AND FARM SPOTLIGHT
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -47,7 +42,7 @@ struct BeansView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 5)
                     
-                    GridBuilderView(items: controller.beanTypes, content: { beanType in
+                    GridBuilderView(items: Controller.beanTypes, content: { beanType in
                         BeanTypeView(text: beanType.name)
                     }, hSpacing: 16, vSpacing: 13)
                     .padding(.bottom, 40)
@@ -88,7 +83,7 @@ struct BeansView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 10)
                     // GRID BUILDER
-                    GridBuilderView(items: controller.beanProducts, content: { beanProduct in
+                    GridBuilderView(items: Controller.beanProducts, content: { beanProduct in
                         BeanProductCard(
                             image: beanProduct.image,
                             name: beanProduct.name,
@@ -108,9 +103,10 @@ struct BeansView: View {
             .edgesIgnoringSafeArea(.top)
             
         } // NavigationStack
+        .toolbarBackground(.black, for: .navigationBar)
     }
 }
 
 #Preview {
-    BeansView(controller: Controller())
+    BeansView()
 }

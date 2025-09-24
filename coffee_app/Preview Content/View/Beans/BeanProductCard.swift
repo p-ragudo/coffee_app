@@ -9,12 +9,13 @@ struct BeanProductCard: View {
     var numOfSold: Int
     var navigateTo: AnyView
     
-    init(image: String,
-         name: String,
-         price: Double,
-         rating: Double,
-         numOfSold: Int,
-         navigateTo: AnyView
+    init(
+        image: String,
+        name: String,
+        price: Double,
+        rating: Double,
+        numOfSold: Int,
+        navigateTo: AnyView
     ) {
         self.image = image
         self.name = name
@@ -62,26 +63,13 @@ struct BeanProductCard: View {
                     
                     Spacer()
                     
-                    Text("\(formatAsK(number: numOfSold)) sold")
+                    Text("\(Utils.formatAsK(number: numOfSold)) sold")
                         .font(.caption2)
                         .foregroundStyle(.blue)
                 }
             }//VStack
             .frame(width: 170)
         } // NavigationLink
-    }
-    
-    func formatAsK(number: Int) -> String {
-        if number >= 1000 {
-            let formattedNumber = Double(number) / 1000
-            let formatter = NumberFormatter()
-            formatter.maximumFractionDigits = 1 // One decimal place for numbers like 1.5k
-            formatter.minimumFractionDigits = 0 // No decimal for whole numbers like 2k
-            formatter.numberStyle = .decimal
-            return "\(formatter.string(from: NSNumber(value: formattedNumber)) ?? "")k"
-        } else {
-            return "\(number)"
-        }
     }
 }
 

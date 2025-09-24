@@ -1,12 +1,6 @@
 import SwiftUI
 
 struct HomeView: View {
-    var controller: Controller
-    
-    init() {
-        controller = Controller()
-    }
-    
     var body: some View {
         NavigationStack {
             ScrollView{
@@ -46,7 +40,7 @@ struct HomeView: View {
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    GridBuilderView(items: controller.beanTypes, content: { beanType in
+                    GridBuilderView(items: Controller.beanTypes, content: { beanType in
                         BeanTypeCard(
                             image: beanType.image,
                             name: beanType.name,
@@ -59,7 +53,7 @@ struct HomeView: View {
                     .padding(.bottom, 40)
                     
                     // REPLACE NAVIGATION DESTINATION
-                    MoreButton(navigateTo: AnyView(WelcomeView()))
+                    MoreButton(navigateTo: AnyView(BeansView()))
                         .padding(.bottom, 50)
                     
                     
@@ -116,7 +110,7 @@ struct HomeView: View {
                         .padding(.horizontal)
                         .padding(.bottom, 15)
                     
-                    GridBuilderView(items: controller.storeProductTypes, content: { product in
+                    GridBuilderView(items: Controller.storeProductTypes, content: { product in
                         ProductTypeCard(
                             image: product.image,
                             name: product.name,
