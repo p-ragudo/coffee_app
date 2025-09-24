@@ -40,7 +40,7 @@ struct HomeView: View {
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    GridBuilderView(items: Controller.beanTypes, content: { beanType in
+                    GridBuilderView(items: Controller.beanTypes, columns: 2, content: { beanType in
                         BeanTypeCard(
                             image: beanType.image,
                             name: beanType.name,
@@ -110,7 +110,7 @@ struct HomeView: View {
                         .padding(.horizontal)
                         .padding(.bottom, 15)
                     
-                    GridBuilderView(items: Controller.storeProductTypes, content: { product in
+                    GridBuilderView(items: Controller.storeProductTypes, columns: 2, content: { product in
                         ProductTypeCard(
                             image: product.image,
                             name: product.name,

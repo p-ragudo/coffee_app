@@ -1,10 +1,31 @@
 import SwiftUI
+import Foundation
+
+// THIS IS A PLACEHOLDER
+struct Size: Identifiable {
+    var id = UUID()
+    var size: String
+}
 
 struct ProductView: View {
     var beanProduct: BeanProduct
     
     // ADD ROAST TYPE FOR PRODUCT IN MODEL. THIS IS A PLACEHOLDER
-    let roastTypes = ["Light Roast", "Medium Roast", "Medium-Dark Roast", "Dark Roast"]
+    let roastTypes = [
+        RoastType(type: "Light Roast"),
+        RoastType(type: "Medium Roast"),
+        RoastType(type: "Medium-Dark Roast"),
+        RoastType(type: "Dark Roast")
+    ]
+    
+    // PLACEHOLDER ARRAY FOR SIZES, FOR DISPLAYING CONTENT
+    let sizes = [
+        Size(size: "100g (3.5oz)"),
+        Size(size: "250g (8.8oz)"),
+        Size(size: "500g (17.6oz)"),
+        Size(size: "1kg (2.2 lbs)"),
+        Size(size: "2.5kg (5.5 lbs)"),
+    ]
     
     init(beanProduct: BeanProduct) {
         self.beanProduct = beanProduct
@@ -57,14 +78,25 @@ struct ProductView: View {
                         .font(.system(size: 20, weight: .semibold, design: .serif))
                         .foregroundStyle(.white)
                         .padding(.horizontal)
-                    // INSERT ROAST TYPES
-                    
+                    // ROAST TYPES WITH PLACEHOLDER VALUES (SEE TOP)
+                    GridBuilderView(items: roastTypes, columns: 2, content: { roastType in
+                        WhiteBorderButton(
+                            text: roastType.type,
+                            width: 180
+                        )
+                    }, hSpacing: 5, vSpacing: 8)
                     
                     Text("Sizes")
                         .font(.system(size: 20, weight: .semibold, design: .serif))
                         .foregroundStyle(.white)
                         .padding(.horizontal)
-                    // INSERT SIZES
+                    // SIZES WITH PLACEHOLDER VALUES (SEE TOP)
+                    GridBuilderView(items: sizes, columns: 3, content: { size in
+                        WhiteBorderButton(
+                            text: size.size,
+                            width: 90
+                        )
+                    }, hSpacing: 0, vSpacing: 8)
                     
                     // INSERT FARM HERE
                     
@@ -78,7 +110,7 @@ struct ProductView: View {
                         .foregroundStyle(.white)
                         .padding(.horizontal)
                     // THIS IS A PLACEHOLDER FOR THE SLIDER
-                    GridBuilderView(items: Controller.beanProducts, content: { product in
+                    GridBuilderView(items: Controller.beanProducts, columns: 2, content: { product in
                         BeanProductCard(
                             image: product.image,
                             name: product.name,

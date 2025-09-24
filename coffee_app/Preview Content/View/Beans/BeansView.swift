@@ -42,7 +42,7 @@ struct BeansView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 5)
                     
-                    GridBuilderView(items: Controller.beanTypes, content: { beanType in
+                    GridBuilderView(items: Controller.beanTypes, columns: 2, content: { beanType in
                         BeanTypeView(text: beanType.name)
                     }, hSpacing: 16, vSpacing: 13)
                     .padding(.bottom, 40)
@@ -83,7 +83,7 @@ struct BeansView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 10)
                     // GRID BUILDER
-                    GridBuilderView(items: Controller.beanProducts, content: { beanProduct in
+                    GridBuilderView(items: Controller.beanProducts, columns: 2, content: { beanProduct in
                         BeanProductCard(
                             image: beanProduct.image,
                             name: beanProduct.name,
