@@ -88,6 +88,17 @@ struct BeansView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 10)
                     // GRID BUILDER
+                    GridBuilderView(items: controller.beanProducts, content: { beanProduct in
+                        BeanProductCard(
+                            image: beanProduct.image,
+                            name: beanProduct.name,
+                            price: beanProduct.price,
+                            rating: beanProduct.rating,
+                            numOfSold: beanProduct.numOfSold,
+                            navigateTo: beanProduct.navigateTo
+
+                        )
+                    }, hSpacing: 20, vSpacing: 40)
                     
                     
                 } // VStack

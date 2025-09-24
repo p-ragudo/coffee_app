@@ -5,22 +5,22 @@ struct BeanProductCard: View {
     var image: String
     var name: String
     var price: Double
-    var popularity: String
     var rating: Double
+    var numOfSold: Int
     var navigateTo: AnyView
     
     init(image: String,
          name: String,
          price: Double,
-         popularity: String,
          rating: Double,
+         numOfSold: Int,
          navigateTo: AnyView
     ) {
         self.image = image
         self.name = name
         self.price = price
-        self.popularity = popularity
         self.rating = rating
+        self.numOfSold = numOfSold
         self.navigateTo = navigateTo
     }
     
@@ -33,8 +33,8 @@ struct BeanProductCard: View {
                     .frame(width: 170)
                 
                 Text(name)
-                    .font(.system(size: 17, weight: .semibold, design: .serif))
-                    .foregroundStyle(.black)
+                    .font(.system(size: 15, weight: .medium, design: .serif))
+                    .foregroundStyle(.white)
                     .lineLimit(2)
                     .truncationMode(.tail)
                     .multilineTextAlignment(.leading)
@@ -53,19 +53,35 @@ struct BeanProductCard: View {
                     .padding(.bottom, 2)
                 
                 HStack{
-                    Text(popularity)
+                    Image(systemName: "star.fill")
+                        .foregroundStyle(.yellow)
+                        .font(.system(size: 11))
+                    Text(String(format: "%.1f", rating))
                         .font(.caption)
                         .foregroundStyle(ThemeColor.green)
                     
                     Spacer()
                     
-                    Text(String(rating))
+                    Text("\(formatAsK(number: numOfSold)) sold")
                         .font(.caption2)
-                        .foregroundStyle(ThemeColor.brown)
+                        .foregroundStyle(.blue)
                 }
             }//VStack
             .frame(width: 170)
         } // NavigationLink
+    }
+    
+    func formatAsK(number: Int) -> String {
+        if number >= 1000 {
+            let formattedNumber = Double(number) / 1000
+            let formatter = NumberFormatter()
+            formatter.maximumFractionDigits = 1 // One decimal place for numbers like 1.5k
+            formatter.minimumFractionDigits = 0 // No decimal for whole numbers like 2k
+            formatter.numberStyle = .decimal
+            return "\(formatter.string(from: NSNumber(value: formattedNumber)) ?? "")k"
+        } else {
+            return "\(number)"
+        }
     }
 }
 
@@ -74,8 +90,8 @@ struct BeanProductCard: View {
         image: "arabica_card",
         name: "Bean product name goes here in this card",
         price: 600,
-        popularity: "Popularity",
         rating: 1,
+        numOfSold: 2345,
         navigateTo: AnyView(WelcomeView())
     )
 }
