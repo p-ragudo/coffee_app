@@ -90,7 +90,7 @@ struct BeansView: View {
                             price: beanProduct.price,
                             rating: beanProduct.rating,
                             numOfSold: beanProduct.numOfSold,
-                            navigateTo: beanProduct.navigateTo
+                            beanProduct: beanProduct
 
                         )
                     }, hSpacing: 20, vSpacing: 40)

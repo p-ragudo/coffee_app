@@ -85,6 +85,7 @@ struct ProductView: View {
                             width: 180
                         )
                     }, hSpacing: 5, vSpacing: 8)
+                    .padding(.bottom, 25)
                     
                     Text("Sizes")
                         .font(.system(size: 20, weight: .semibold, design: .serif))
@@ -94,15 +95,43 @@ struct ProductView: View {
                     GridBuilderView(items: sizes, columns: 3, content: { size in
                         WhiteBorderButton(
                             text: size.size,
-                            width: 90
+                            width: 115
                         )
-                    }, hSpacing: 0, vSpacing: 8)
+                    }, hSpacing: 0, vSpacing: 10)
+                    .padding(.bottom, 30)
                     
                     // INSERT FARM HERE
+                    
+                    Divider()
+                        .background(.white)
+                        .padding(.bottom, 30)
+                        .padding(.horizontal)
                     
                     Text("Description")
                         .font(.system(size: 20, weight: .semibold, design: .serif))
                         .foregroundStyle(.white)
+                        .padding(.horizontal)
+                        .padding(.bottom, 15)
+                    Text(
+                        """
+                        This is where the description of the farm or shop goes. This is where they will describe all about their farm, the products they produce, or whatever they may be inclined to put in this section
+                        
+                        Additional things to say or describe a product will be here. It will be up to the shop or farm to decide what descriptions and product specifications they will include. Just that this section is for that purpose
+                        
+                        One last paragraph to demonstrate this section of the page. This is where descriptions will go about the product. More may be said depending on the farm and the descriptions and information they include. It is up to them.
+                        """
+                    )
+                        .font(.system(size: 14, weight: .light, design: .serif))
+                        .foregroundStyle(.white)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(nil)
+                        .padding(.horizontal)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.bottom, 40)
+                    
+                    Divider()
+                        .background(.white)
+                        .padding(.bottom, 40)
                         .padding(.horizontal)
                     
                     Text("You Might Like")
@@ -117,7 +146,7 @@ struct ProductView: View {
                             price: product.price,
                             rating: product.rating,
                             numOfSold: product.numOfSold,
-                            navigateTo: product.navigateTo
+                            beanProduct: product
                         )
                     }, hSpacing: 20, vSpacing: 40)
                     

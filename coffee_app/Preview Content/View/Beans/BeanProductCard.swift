@@ -7,7 +7,7 @@ struct BeanProductCard: View {
     var price: Double
     var rating: Double
     var numOfSold: Int
-    var navigateTo: AnyView
+    var beanProduct: BeanProduct
     
     init(
         image: String,
@@ -15,18 +15,18 @@ struct BeanProductCard: View {
         price: Double,
         rating: Double,
         numOfSold: Int,
-        navigateTo: AnyView
+        beanProduct: BeanProduct
     ) {
         self.image = image
         self.name = name
         self.price = price
         self.rating = rating
         self.numOfSold = numOfSold
-        self.navigateTo = navigateTo
+        self.beanProduct = beanProduct
     }
     
     var body: some View {
-        NavigationLink(destination: navigateTo) {
+        NavigationLink(destination: ProductView(beanProduct: beanProduct)) {
             VStack(alignment: .leading){
                 Image(image)
                     .resizable()
@@ -80,6 +80,6 @@ struct BeanProductCard: View {
         price: 600,
         rating: 1,
         numOfSold: 2345,
-        navigateTo: AnyView(WelcomeView())
+        beanProduct: Controller.beanProducts.first!
     )
 }
