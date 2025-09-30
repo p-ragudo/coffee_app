@@ -6,25 +6,25 @@ struct BeanTypeCard: View {
     var desc: String
     var popularity: String
     var rating: Double
-    var navigateTo: AnyView
+    var beanType: BeanType
     
     init(image: String,
          name: String,
          desc: String,
          popularity: String,
          rating: Double,
-         navigateTo: AnyView
+         beanType: BeanType
     ) {
         self.image = image
         self.name = name
         self.desc = desc
         self.popularity = popularity
         self.rating = rating
-        self.navigateTo = navigateTo
+        self.beanType = beanType
     }
     
     var body: some View {
-        NavigationLink(destination: navigateTo) {
+        NavigationLink(destination: BeansTypeView(beanType: beanType)) {
             VStack(alignment: .leading){
                 Image(image)
                     .resizable()
@@ -68,6 +68,6 @@ struct BeanTypeCard: View {
         desc: "Sweet and classic, perfect for every taste",
         popularity: "Popularity",
         rating: 1,
-        navigateTo: AnyView(WelcomeView())
+        beanType: Controller.beanTypes.first!
     )
 }

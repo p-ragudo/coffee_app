@@ -43,7 +43,7 @@ struct BeansView: View {
                         .padding(.bottom, 5)
                     
                     GridBuilderView(items: Controller.beanTypes, columns: 2, content: { beanType in
-                        BeanTypeView(text: beanType.name)
+                        BeanTypeView(text: beanType.name, beanType: beanType)
                     }, hSpacing: 16, vSpacing: 13)
                     .padding(.bottom, 40)
                     

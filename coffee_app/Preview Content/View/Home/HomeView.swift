@@ -47,7 +47,7 @@ struct HomeView: View {
                             desc: beanType.desc,
                             popularity: beanType.popularity,
                             rating: beanType.rating,
-                            navigateTo: beanType.navigateTo
+                            beanType: beanType
                         )
                     }, hSpacing: 16, vSpacing: 30)
                     .padding(.bottom, 40)
