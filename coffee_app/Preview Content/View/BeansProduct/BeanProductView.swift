@@ -7,7 +7,7 @@ struct Size: Identifiable {
     var size: String
 }
 
-struct ProductView: View {
+struct BeanProductView: View {
     var beanProduct: BeanProduct
     
     // ADD ROAST TYPE FOR PRODUCT IN MODEL. THIS IS A PLACEHOLDER
@@ -161,5 +161,5 @@ struct ProductView: View {
 }
 
 #Preview {
-    ProductView(beanProduct: Controller.beanProducts.first!)
+    BeanProductView(beanProduct: Controller.beanProducts.first!)
 }

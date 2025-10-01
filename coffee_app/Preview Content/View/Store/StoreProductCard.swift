@@ -1,13 +1,13 @@
 
 import SwiftUI
 
-struct BeanProductCard: View {
+struct StoreProductCard: View {
     var image: String
     var name: String
     var price: Double
     var rating: Double
     var numOfSold: Int
-    var beanProduct: BeanProduct
+    var storeProduct: StoreProduct
     
     init(
         image: String,
@@ -15,18 +15,18 @@ struct BeanProductCard: View {
         price: Double,
         rating: Double,
         numOfSold: Int,
-        beanProduct: BeanProduct
+        storeProduct: StoreProduct
     ) {
         self.image = image
         self.name = name
         self.price = price
         self.rating = rating
         self.numOfSold = numOfSold
-        self.beanProduct = beanProduct
+        self.storeProduct = storeProduct
     }
     
     var body: some View {
-        NavigationLink(destination: BeanProductView(beanProduct: beanProduct)) {
+        NavigationLink(destination: StoreProductView(storeProduct: storeProduct)) {
             VStack(alignment: .leading){
                 Image(image)
                     .resizable()
@@ -74,12 +74,12 @@ struct BeanProductCard: View {
 }
 
 #Preview {
-    BeanProductCard(
-        image: "arabica_card",
+    StoreProductCard(
+        image: "brewers_card",
         name: "Bean product name goes here in this card",
         price: 600,
         rating: 1,
         numOfSold: 2345,
-        beanProduct: Controller.beanProducts.first!
+        storeProduct: Controller.storeProducts.first!
     )
 }

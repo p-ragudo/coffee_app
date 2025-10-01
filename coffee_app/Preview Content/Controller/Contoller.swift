@@ -4,6 +4,7 @@ class Controller {
     static var beanTypes: [BeanType] = BeanTypeProvider.getItems()
     static var storeProductTypes: [StoreProductType] = StoreProductTypeProvider.getItems()
     static var beanProducts: [BeanProduct] = BeanProductsProvider.getItems()
+    static var storeProducts: [StoreProduct] = StoreProductsProvider.getItems()
 }
 
 class Utils {
