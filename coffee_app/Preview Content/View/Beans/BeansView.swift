@@ -1,6 +1,33 @@
 import SwiftUI
 
+struct ImageTest: Identifiable {
+    var id = UUID()
+    var image: String
+}
+
+struct ImageTestView: View {
+    var anImage: ImageTest
+    
+    var body: some View {
+        Image(anImage.image)
+            .resizable()
+            .scaledToFit()
+            .frame(maxWidth: UIScreen.main.bounds.width)
+            .frame(height: UIScreen.main.bounds.width * (3 / 4))
+            .clipped()
+    }
+}
+
 struct BeansView: View {
+    let imagesTest = [
+        ImageTest(image: "beans_sale"),
+        ImageTest(image: "beans_sale"),
+        ImageTest(image: "beans_sale"),
+        ImageTest(image: "beans_sale"),
+        ImageTest(image: "beans_sale"),
+        ImageTest(image: "beans_sale"),
+    ]
+    
     // ADD NAVIGATION TO BEAN TYPES, DISCOVER, AND FARM SPOTLIGHT
     var body: some View {
         NavigationStack {
@@ -60,6 +87,40 @@ struct BeansView: View {
                         .frame(maxWidth: .infinity)
                         .scaledToFit()
                         .padding(.bottom, 40)
+                    
+                    // BEST SELLERS SECTION
+                    Text("Best Sellers")
+                        .font(.system(size: 20, weight: .semibold, design: .serif))
+                        .foregroundStyle(.white)
+                        .padding(.top, 5)
+                        .padding(.horizontal)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                    ImageSliderView(items: imagesTest, content: { imageCard in
+                        ImageTestView(
+                            anImage: imageCard
+                        )
+                    }, hSpacing: 0)
+                    
+                    // BEST SELLERS SECTION
+                    Text("Best Sellers")
+                        .font(.system(size: 20, weight: .semibold, design: .serif))
+                        .foregroundStyle(.white)
+                        .padding(.top, 5)
+                        .padding(.horizontal)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.bottom, 10)
+                    ImageSliderView(items: Controller.beanProducts, automaticScrolling: false, content: { beanProduct in
+                        BeanProductCard(
+                            image: beanProduct.image,
+                            name: beanProduct.name,
+                            price: beanProduct.price,
+                            rating: beanProduct.rating,
+                            numOfSold: beanProduct.numOfSold,
+                            beanProduct: beanProduct
+                        )
+                    }, hSpacing: 40)
+                    
                     
                     // FARM SPOTLIGHTS SECTION
                     Text("Farm Spotlights")
