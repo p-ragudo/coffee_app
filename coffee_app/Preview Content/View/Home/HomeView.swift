@@ -52,7 +52,6 @@ struct HomeView: View {
                     }, hSpacing: 16, vSpacing: 30)
                     .padding(.bottom, 40)
                     
-                    // REPLACE NAVIGATION DESTINATION
                     MoreButton(navigateTo: AnyView(BeansView()))
                         .padding(.bottom, 50)
                     
@@ -121,8 +120,7 @@ struct HomeView: View {
                     }, hSpacing: 16, vSpacing: 30)
                     .padding(.bottom, 40)
                     
-                    // REPLACE NAVIGATION DESTINATION
-                    MoreButton(navigateTo: AnyView(WelcomeView()))
+                    MoreButton(navigateTo: AnyView(StoreView()))
                         .padding(.bottom, 80)
                     
                     // FOOTER

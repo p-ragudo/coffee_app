@@ -13,7 +13,6 @@ struct BeanType: Identifiable {
 class BeanTypeProvider {
     static func getItems() -> [BeanType] {
         return [
-            // REPLACE EACH IMAGE AND NAVIGATION DESTINATION TO THE APPROPRIATE ONE
             BeanType(image: "arabica_card", name: "Arabica", desc: "Sweet and classic, perfect for every taste", popularity: PopularityLevel.top_favorite, rating: 5.0),
             BeanType(image: "robusta_card", name: "Robusta", desc: "Strong & bold tone, perfect for espressos", popularity: PopularityLevel.trending, rating: 4.8),
             BeanType(image: "liberica_card", name: "Liberica", desc: "Filipino-style kapeng barako", popularity: PopularityLevel.rising, rating: 4.5),

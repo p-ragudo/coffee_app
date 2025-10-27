@@ -100,14 +100,16 @@ struct BeansTypeView: View {
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 10)
-                    Text("Slideshow Images Here")
-                    .font(.system(size: 14, weight: .light, design: .serif))
-                    .foregroundStyle(.red)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(nil)
-                    .padding(.horizontal)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.bottom, 40)
+                    ImageSliderView(items: Controller.beanProducts, automaticScrolling: false, content: { beanProduct in
+                        BeanProductCard(
+                            image: beanProduct.image,
+                            name: beanProduct.name,
+                            price: beanProduct.price,
+                            rating: beanProduct.rating,
+                            numOfSold: beanProduct.numOfSold,
+                            beanProduct: beanProduct
+                        )
+                    }, hSpacing: 20)
                     
                     // BROWSE SECTION
                     Text("Browse")
