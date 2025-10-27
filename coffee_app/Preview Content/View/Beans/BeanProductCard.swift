@@ -8,6 +8,7 @@ struct BeanProductCard: View {
     var rating: Double
     var numOfSold: Int
     var beanProduct: BeanProduct
+    var imageScale: CGFloat = 1.0
     
     init(
         image: String,
@@ -15,7 +16,8 @@ struct BeanProductCard: View {
         price: Double,
         rating: Double,
         numOfSold: Int,
-        beanProduct: BeanProduct
+        beanProduct: BeanProduct,
+        imageScale: CGFloat = 1.0
     ) {
         self.image = image
         self.name = name
@@ -23,6 +25,7 @@ struct BeanProductCard: View {
         self.rating = rating
         self.numOfSold = numOfSold
         self.beanProduct = beanProduct
+        self.imageScale = imageScale
     }
     
     var body: some View {
@@ -31,7 +34,7 @@ struct BeanProductCard: View {
                 Image(image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 170)
+                    .frame(width: 170 * imageScale)
                 
                 Text(name)
                     .font(.system(size: 15, weight: .medium, design: .serif))
@@ -68,7 +71,7 @@ struct BeanProductCard: View {
                         .foregroundStyle(.blue)
                 }
             }//VStack
-            .frame(width: 170)
+            .frame(width: 170 * imageScale)
         } // NavigationLink
     }
 }

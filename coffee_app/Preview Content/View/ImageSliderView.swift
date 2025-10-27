@@ -4,18 +4,21 @@ struct ImageSliderView<Item, Content: View>: View where Item: Identifiable {
     var items: [Item]
     var content: (Item) -> Content
     var hSpacing: CGFloat
-    var automaticScrolling: Bool // New boolean attribute to control automatic scrolling
+    var automaticScrolling: Bool
+    var scaleFactor: CGFloat
+    
     
     // State for tracking the current index
     @State private var currentIndex: Int = 0
     // Timer for automatic scrolling
     @State private var timer: Timer? = nil
     
-    init(items: [Item], automaticScrolling: Bool = true, @ViewBuilder content: @escaping (Item) -> Content, hSpacing: CGFloat) {
+    init(items: [Item], automaticScrolling: Bool = true, scaleFactor: CGFloat = 1.0, @ViewBuilder content: @escaping (Item) -> Content, hSpacing: CGFloat) {
         self.items = items
         self.content = content
         self.hSpacing = hSpacing
         self.automaticScrolling = automaticScrolling
+        self.scaleFactor = scaleFactor
     }
     
     var body: some View {
@@ -25,6 +28,7 @@ struct ImageSliderView<Item, Content: View>: View where Item: Identifiable {
                     HStack(spacing: hSpacing) {
                         ForEach(items) { item in
                             content(item)
+                                .scaleEffect(scaleFactor)
                                 .id(item.id) // Assign an id to each item for scrollProxy to use
                         }
                     }

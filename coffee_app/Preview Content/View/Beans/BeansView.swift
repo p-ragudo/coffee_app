@@ -95,20 +95,6 @@ struct BeansView: View {
                         .padding(.top, 5)
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity, alignment: .leading)
-
-                    ImageSliderView(items: imagesTest, content: { imageCard in
-                        ImageTestView(
-                            anImage: imageCard
-                        )
-                    }, hSpacing: 0)
-                    
-                    // BEST SELLERS SECTION
-                    Text("Best Sellers")
-                        .font(.system(size: 20, weight: .semibold, design: .serif))
-                        .foregroundStyle(.white)
-                        .padding(.top, 5)
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 10)
                     ImageSliderView(items: Controller.beanProducts, automaticScrolling: false, content: { beanProduct in
                         BeanProductCard(
@@ -117,9 +103,11 @@ struct BeansView: View {
                             price: beanProduct.price,
                             rating: beanProduct.rating,
                             numOfSold: beanProduct.numOfSold,
-                            beanProduct: beanProduct
+                            beanProduct: beanProduct,
+                            imageScale: 0.7
                         )
-                    }, hSpacing: 40)
+                    }, hSpacing: 30)
+                    .padding(.bottom, 40)
                     
                     
                     // FARM SPOTLIGHTS SECTION
