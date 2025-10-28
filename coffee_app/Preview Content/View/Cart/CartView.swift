@@ -11,7 +11,6 @@ struct CartView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
                     if cartController.cartItems.isEmpty {
-                                            // Display this when the cart is empty
                         VStack {
                             Image(systemName: "cart.fill.badge.plus") // Placeholder image
                                 .resizable()

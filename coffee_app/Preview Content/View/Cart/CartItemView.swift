@@ -12,15 +12,15 @@ struct CartItemView: View {
             }) {
                 Image(systemName: item.isSelected ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(item.isSelected ? .green : .gray)
-                    .font(.title)
+                    .font(.title2)
             }
             
             // Product Image (Placeholder)
-            Rectangle()
-                .fill(Color.gray)
+            Image(item.image) // Use item.image for the actual product image
+                .resizable()
+                .scaledToFit()
                 .frame(width: 80, height: 80)
                 .cornerRadius(8)
-                .padding(.trailing)
             
             // Product Name and Price
             VStack(alignment: .leading) {
@@ -30,7 +30,7 @@ struct CartItemView: View {
                     .lineLimit(1)
                     .truncationMode(.tail)
                 
-                Text("P \(String(format: "%.2f", item.price))")
+                Text("₱ \(String(format: "%.2f", item.price))")
                     .font(.subheadline)
                     .foregroundColor(.orange)
             }
@@ -44,7 +44,6 @@ struct CartItemView: View {
                 }) {
                     Text("-")
                         .frame(width: 30, height: 30)
-                        .background(Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
@@ -52,7 +51,8 @@ struct CartItemView: View {
                 Text("\(item.quantity)")
                     .frame(width: 30, height: 30)
                     .foregroundColor(.white)
-                    .background(Color.black)
+                    .padding(.horizontal)
+                    .background(ThemeColor.green)
                     .cornerRadius(8)
                 
                 Button(action: {
@@ -60,19 +60,26 @@ struct CartItemView: View {
                 }) {
                     Text("+")
                         .frame(width: 30, height: 30)
-                        .background(Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(8)
                 }
             }
         }
-        .padding()
-        .background(Color.black)
+        .padding(.vertical)
+        .padding(.horizontal, 5)
         .cornerRadius(12)
         .overlay(
             RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.white, lineWidth: 2)
+                .stroke(Color.white, lineWidth: 0.8)
         )
-        .padding(.horizontal)
+    }
+}
+
+struct CartItemView_Previews: PreviewProvider {
+    static var previews: some View {
+        CartItemView(cartController: CartController(), item: CartItem(name: "Dark Roast Coffee", price: 200, image: "arabica_card", quantity: 2, isSelected: false))
+            .previewLayout(.sizeThatFits)
+            .padding(.horizontal)
+            .background(Color.black)
     }
 }
