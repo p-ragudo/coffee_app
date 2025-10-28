@@ -74,15 +74,6 @@ struct BeansTypeView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, 40)
                     
-                    Text("Search and Filter Here")
-                    .font(.system(size: 14, weight: .light, design: .serif))
-                    .foregroundStyle(.red)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(nil)
-                    .padding(.horizontal)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.bottom, 40)
-                    
                     Text("2 Tabs Here")
                     .font(.system(size: 14, weight: .light, design: .serif))
                     .foregroundStyle(.red)
@@ -107,9 +98,11 @@ struct BeansTypeView: View {
                             price: beanProduct.price,
                             rating: beanProduct.rating,
                             numOfSold: beanProduct.numOfSold,
-                            beanProduct: beanProduct
+                            beanProduct: beanProduct,
+                            imageScale: 0.7
                         )
                     }, hSpacing: 20)
+                    .padding(.bottom, 40)
                     
                     // BROWSE SECTION
                     Text("Browse")
@@ -141,13 +134,17 @@ struct BeansTypeView: View {
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 10)
-                    Text("Slideshow Images Here")
-                    .font(.system(size: 14, weight: .light, design: .serif))
-                    .foregroundStyle(.red)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(nil)
-                    .padding(.horizontal)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    ImageSliderView(items: Controller.beanProducts, automaticScrolling: false, content: { beanProduct in
+                        BeanProductCard(
+                            image: beanProduct.image,
+                            name: beanProduct.name,
+                            price: beanProduct.price,
+                            rating: beanProduct.rating,
+                            numOfSold: beanProduct.numOfSold,
+                            beanProduct: beanProduct,
+                            imageScale: 0.7
+                        )
+                    }, hSpacing: 20)
                     .padding(.bottom, 40)
                     
                     // MORE SECTION

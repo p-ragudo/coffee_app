@@ -42,9 +42,7 @@ struct BeanProductView: View {
                         .padding(.top, 50)
                     
                     HStack {
-                        Text(beanProduct.name)
-                            .font(.system(size: 24, weight: .semibold, design: .serif))
-                            .foregroundStyle(.white)
+                        TextPageTitle(text: beanProduct.name)
                         Spacer()
                         Image(systemName: "heart")
                             .foregroundStyle(.red)
@@ -74,9 +72,8 @@ struct BeanProductView: View {
                         .padding(.horizontal)
                         .padding(.bottom, 30)
                     
-                    Text("Available Roast Types")
-                        .font(.system(size: 20, weight: .semibold, design: .serif))
-                        .foregroundStyle(.white)
+                    
+                    TextSection(text: "Available Roast Types")
                         .padding(.horizontal)
                     // ROAST TYPES WITH PLACEHOLDER VALUES (SEE TOP)
                     GridBuilderView(items: roastTypes, columns: 2, content: { roastType in
@@ -87,9 +84,8 @@ struct BeanProductView: View {
                     }, hSpacing: 5, vSpacing: 8)
                     .padding(.bottom, 25)
                     
-                    Text("Sizes")
-                        .font(.system(size: 20, weight: .semibold, design: .serif))
-                        .foregroundStyle(.white)
+                    
+                    TextSection(text: "Sizes")
                         .padding(.horizontal)
                     // SIZES WITH PLACEHOLDER VALUES (SEE TOP)
                     GridBuilderView(items: sizes, columns: 3, content: { size in
@@ -100,19 +96,15 @@ struct BeanProductView: View {
                     }, hSpacing: 0, vSpacing: 10)
                     .padding(.bottom, 30)
                     
-                    // INSERT FARM HERE
-                    
                     Divider()
                         .background(.white)
                         .padding(.bottom, 30)
                         .padding(.horizontal)
                     
-                    Text("Description")
-                        .font(.system(size: 20, weight: .semibold, design: .serif))
-                        .foregroundStyle(.white)
+                    TextSection(text: "Description")
                         .padding(.horizontal)
                         .padding(.bottom, 15)
-                    Text(
+                    TextParagraph(text:
                         """
                         This is where the description of the farm or shop goes. This is where they will describe all about their farm, the products they produce, or whatever they may be inclined to put in this section
                         
@@ -121,34 +113,72 @@ struct BeanProductView: View {
                         One last paragraph to demonstrate this section of the page. This is where descriptions will go about the product. More may be said depending on the farm and the descriptions and information they include. It is up to them.
                         """
                     )
-                        .font(.system(size: 14, weight: .light, design: .serif))
-                        .foregroundStyle(.white)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(nil)
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.bottom, 40)
+                    .padding(.bottom, 30)
                     
                     Divider()
                         .background(.white)
-                        .padding(.bottom, 40)
+                        .padding(.bottom, 10)
                         .padding(.horizontal)
                     
-                    Text("You Might Like")
-                        .font(.system(size: 20, weight: .semibold, design: .serif))
-                        .foregroundStyle(.white)
+                    HStack {
+                        Image("farm_bg")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 50, height: 50)
+                            .clipShape(Circle())
+                            .padding(.trailing, 10)
+                        
+                        VStack(alignment: .leading) {
+                            Text("Farm Name Goes Here")
+                                .foregroundStyle(.white)
+                                .font(.system(size: 13, weight: .medium, design: .serif))
+                            Text("Location of Farm")
+                                .foregroundStyle(.gray)
+                                .font(.system(size: 13, weight: .light, design: .serif))
+                        }
+                        
+                        Spacer()
+                        
+                        VStack {
+                            Text("5.0")
+                                .foregroundStyle(.white)
+                                .font(.system(size: 13, weight: .medium, design: .serif))
+                            Text("Rating")
+                                .foregroundStyle(.gray)
+                                .font(.system(size: 12, weight: .medium, design: .serif))
+                            WhiteBorderButton(
+                                text: "Visit",
+                                width: 70,
+                                textSize: 12,
+                                verticalPadding: 5
+                            )
+                        }
+                        .padding(.trailing)
+                
+                    }
+                    .padding(.horizontal)
+                    .padding(.bottom, 10)
+                    
+                    Divider()
+                        .background(.white)
+                        .padding(.bottom, 30)
+                        .padding(.horizontal)
+                    
+                    TextSection(text: "You Might Like")
                         .padding(.horizontal)
                     // THIS IS A PLACEHOLDER FOR THE SLIDER
-                    GridBuilderView(items: Controller.beanProducts, columns: 2, content: { product in
+                    ImageSliderView(items: Controller.beanProducts, automaticScrolling: false, content: { beanProduct in
                         BeanProductCard(
-                            image: product.image,
-                            name: product.name,
-                            price: product.price,
-                            rating: product.rating,
-                            numOfSold: product.numOfSold,
-                            beanProduct: product
+                            image: beanProduct.image,
+                            name: beanProduct.name,
+                            price: beanProduct.price,
+                            rating: beanProduct.rating,
+                            numOfSold: beanProduct.numOfSold,
+                            beanProduct: beanProduct,
+                            imageScale: 0.7
                         )
-                    }, hSpacing: 20, vSpacing: 40)
+                    }, hSpacing: 20)
+                    .padding(.bottom, 20)
                     
                 } // Vstack
             } // ScrollView

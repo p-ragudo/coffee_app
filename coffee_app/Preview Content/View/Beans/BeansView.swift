@@ -106,7 +106,7 @@ struct BeansView: View {
                             beanProduct: beanProduct,
                             imageScale: 0.7
                         )
-                    }, hSpacing: 30)
+                    }, hSpacing: 20)
                     .padding(.bottom, 40)
                     
                     
