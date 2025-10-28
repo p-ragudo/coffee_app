@@ -31,8 +31,8 @@ struct CartItemView: View {
                     .truncationMode(.tail)
                 
                 Text("₱ \(String(format: "%.2f", item.price))")
-                    .font(.subheadline)
-                    .foregroundColor(.orange)
+                    .font(.system(size: 15).bold())
+                    .foregroundColor(ThemeColor.brown)
             }
             
             Spacer()

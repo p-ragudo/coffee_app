@@ -15,13 +15,13 @@ struct CartView: View {
                             Image(systemName: "cart.fill.badge.plus") // Placeholder image
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 150, height: 150)
+                                .frame(width: 100, height: 100)
                                 .foregroundColor(.gray)
                                                 
                             Text("No items in cart yet")
-                                .font(.title2)
+                                .font(.title3)
                                 .foregroundColor(.gray)
-                                .padding(.top, 10)
+                                .padding(.vertical)
                         }
                     } else {
                         // Display cart items if the cart is not empty
@@ -29,12 +29,13 @@ struct CartView: View {
                             CartItemView(cartController: cartController, item: item)
                         }
                     }
-                    
-                    // Display total price of selected items
-                    Text("Total: P \(String(format: "%.2f", cartController.totalPrice()))")
-                        .font(.title)
-                        .foregroundColor(.orange)
-                        .padding()
+
+                    TextSection(
+                        text: "Total: ₱ \(String(format: "%.2f", cartController.totalPrice()))",
+                        size: 24,
+                        weight: .bold,
+                        color: ThemeColor.brown
+                    )
                 }
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity)
