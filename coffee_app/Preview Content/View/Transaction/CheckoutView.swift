@@ -3,9 +3,7 @@ import SwiftUI
 struct AddressFormView: View {
     @State private var fullName = ""
     @State private var phoneNumber = ""
-    @State private var regionProvinceCityBarangay = ""
-    @State private var postalCode = ""
-    @State private var streetAddress = ""
+    @State private var fullAddress = ""
 
     var body: some View {
         NavigationStack {
@@ -16,62 +14,14 @@ struct AddressFormView: View {
                     TextSection(text: "Address")
                         .padding(.horizontal)
                     
-                    // Full Name
-                    VStack(alignment: .leading) {
-                        Text("Full Name")
-                            .font(.subheadline)
-                            .foregroundColor(.white)
-                        TextField("Enter full name", text: $fullName)
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 8).strokeBorder(Color.white, lineWidth: 1))
-                    }
-                    .padding(.horizontal)
-                    
+                    customTextField("Full Name", text: $fullName)
+                                        
                     // Phone Number
-                    VStack(alignment: .leading) {
-                        Text("Phone Number")
-                            .font(.subheadline)
-                            .foregroundColor(.white)
-                        TextField("Enter phone number", text: $phoneNumber)
-                            .keyboardType(.phonePad)
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 8).strokeBorder(.white, lineWidth: 1))
-                    }
-                    .padding(.horizontal)
-                    
+                    customTextField("Phone Number", text: $phoneNumber, keyboardType: .phonePad)
+                                        
                     // Region, Province, City, Barangay
-                    VStack(alignment: .leading) {
-                        Text("Region, Province, City, Barangay")
-                            .font(.subheadline)
-                            .foregroundColor(.white)
-                        TextField("Enter region, province, city, barangay", text: $regionProvinceCityBarangay)
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 8).strokeBorder(.white, lineWidth: 1))
-                    }
-                    .padding(.horizontal)
-                    
-                    // Postal Code
-                    VStack(alignment: .leading) {
-                        Text("Postal Code")
-                            .font(.subheadline)
-                            .foregroundColor(.white)
-                        TextField("Enter postal code", text: $postalCode)
-                            .keyboardType(.numberPad)
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 8).strokeBorder(.white, lineWidth: 1))
-                    }
-                    .padding(.horizontal)
-                    
-                    // Street Address
-                    VStack(alignment: .leading) {
-                        Text("Street name, Building, House No.")
-                            .font(.subheadline)
-                            .foregroundColor(.white)
-                        TextField("Enter street name, building, house number", text: $streetAddress)
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 8).strokeBorder(.white, lineWidth: 1))
-                    }
-                    .padding(.horizontal)
+                    customTextField("Full Address", text: $fullAddress)
+                                        
                     
                     
                     Spacer()
@@ -89,6 +39,26 @@ struct AddressFormView: View {
         
         
     }
+    
+    @ViewBuilder
+        func customTextField(_ placeholder: String, text: Binding<String>, keyboardType: UIKeyboardType = .default) -> some View {
+            ZStack(alignment: .leading) {
+                if text.wrappedValue.isEmpty {
+                    Text(placeholder)
+                        .foregroundColor(.white.opacity(0.5))
+                        .padding(.leading, 12)
+                }
+                TextField("", text: text)
+                    .keyboardType(keyboardType)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.white, lineWidth: 0.8)
+                    )
+            }
+            .padding(.horizontal)
+        }
 }
 
 struct AddressFormView_Previews: PreviewProvider {
