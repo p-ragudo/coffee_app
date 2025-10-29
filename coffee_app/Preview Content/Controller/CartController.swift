@@ -5,12 +5,11 @@ class CartController: ObservableObject {
     
     // Load cart data from UserDefaults
     init() {
-//        self.cartItems = [
-//            CartItem(name: "Dark Roast Coffee", price: 200, image: "arabica_card", quantity: 2, isSelected: false),
-//            CartItem(name: "Light Roast Coffee", price: 150, image: "arabica_card", quantity: 1, isSelected: true),
-//            CartItem(name: "Espresso Beans", price: 300, image: "arabica_card", quantity: 3, isSelected: false)
-//        ]
-//        UserDefaults.standard.removeObject(forKey: "cartItems")
+        self.cartItems = [
+            CartItem(name: "Dark Roast Coffee", price: 200, image: "arabica_card", quantity: 2, isSelected: false),
+            CartItem(name: "Light Roast Coffee", price: 150, image: "arabica_card", quantity: 1, isSelected: true),
+            CartItem(name: "Espresso Beans", price: 300, image: "arabica_card", quantity: 3, isSelected: false)
+        ]
         loadCartItems()
     }
     

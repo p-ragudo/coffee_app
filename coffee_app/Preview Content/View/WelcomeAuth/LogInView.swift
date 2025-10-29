@@ -4,6 +4,10 @@ struct LogInView: View {
     @State var usernameEmail: String = ""
     @State var password: String = ""
     
+    @StateObject var accountController = AccountController()
+    @State private var loginError: String? = nil
+    @State private var isLoggedIn: Bool = false
+    
     var body: some View {
         NavigationStack{
             ZStack {
@@ -44,19 +48,45 @@ struct LogInView: View {
                     }
                     .padding(.bottom, 40)
                     
-                    NavigationLink(
-                        destination: HomeView(),
-                        label: {
-                            Text("Log In")
-                                .font(.system(size: 18, weight: .medium, design: .serif))
-                                .frame(maxWidth: .infinity)
-                                .foregroundStyle(.white)
-                                .padding(.vertical, 15)
-                                .background(ThemeColor.brown)
-                                .cornerRadius(8)
-                                .padding(.bottom, 40)
+                    
+                    Button(action: {
+                        loginError = nil
+
+                        // Check if fields are empty
+                        if usernameEmail.isEmpty || password.isEmpty {
+                            loginError = "Username/Email or Password cannot be empty."
+                            return
                         }
-                    )
+                        
+                        // Attempt to log in
+                        let isValidLogin = accountController.login(usernameEmail: usernameEmail, password: password)
+                        if isValidLogin {
+                            // If login is successful, navigate to HomeView
+                            print("Login successful!")
+                            loginError = nil // Clear any previous errors
+                            isLoggedIn = true // Set the state to trigger navigation
+                        } else {
+                            // If login fails, show error message
+                            loginError = "Invalid username/email or password."
+                            isLoggedIn = false
+                        }
+                    }) {
+                        Text("Log In")
+                            .font(.system(size: 18, weight: .medium, design: .serif))
+                            .frame(maxWidth: .infinity)
+                            .foregroundStyle(.white)
+                            .padding(.vertical, 15)
+                            .background(ThemeColor.brown)
+                            .cornerRadius(8)
+                            .padding(.bottom, 40)
+                    }
+                    
+                    NavigationLink(
+                                           destination: HomeView(),
+                                           isActive: $isLoggedIn // Trigger navigation when login is successful
+                                       ) {
+                                           EmptyView() // Invisible navigation link
+                                       }
                     
                 } // VStack
             } // ZStack
@@ -64,6 +94,7 @@ struct LogInView: View {
             .padding()
             .background(.black) // REMOVE ONCE BACKGROUND IMAGE IS PRESENT
             .edgesIgnoringSafeArea(.all) // REMOVE ONCE BACKGROUND IMAGE IS PRESENT
+            
         } // NavigationStack
     }
 }

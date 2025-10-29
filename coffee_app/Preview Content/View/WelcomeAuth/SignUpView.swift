@@ -5,6 +5,8 @@ struct SignUpView: View {
     @State var email: String = ""
     @State var password: String = ""
     
+    @StateObject var accountController = AccountController()
+    
     var body: some View {
         NavigationStack{
             ZStack {
@@ -51,7 +53,7 @@ struct SignUpView: View {
                     .padding(.bottom, 40)
                     
                     NavigationLink(
-                        destination: HomeView(),
+                        destination: LogInView(),
                         label: {
                             Text("Sign Up")
                                 .font(.system(size: 18, weight: .medium, design: .serif))
@@ -63,6 +65,11 @@ struct SignUpView: View {
                                 .padding(.bottom, 40)
                         }
                     )
+                    .simultaneousGesture(TapGesture().onEnded {
+                        let newAccount = Account(username: username, email: email, password: password)
+                        accountController.saveAccount(newAccount)
+                        accountController.printAccount()
+                    })
                     
                 } // VStack
             } // ZStack
