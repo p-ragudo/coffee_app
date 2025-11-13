@@ -20,41 +20,28 @@ struct BeansTypeView: View {
                         .padding(.top, 50)
                     
                     // HEADER TITLE AND DESCRIPTION
-                    HStack {
-                        VStack {
-                            Text(beanType.name)
-                                .font(.system(size: 30, weight: .semibold, design: .serif))
-                                .foregroundStyle(.white)
-                                .padding(.top, 5)
-                                .padding(.horizontal)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            HStack {
-                                Text(beanType.popularity)
-                                    .font(.system(size: 14, weight: .regular, design: .serif))
-                                    .foregroundStyle(ThemeColor.green)
-                                    .padding(.leading)
-                                    .padding(.bottom, 5)
-                                    .padding(.trailing, 5)
-                                Text(String(format: "%.2f", beanType.rating))
-                                    .font(.system(size: 14, weight: .regular, design: .serif))
-                                    .foregroundStyle(ThemeColor.brown)
-                                    .padding(.bottom, 5)
-                            } // HStack
+                    VStack {
+                        Text(beanType.name)
+                            .font(.system(size: 30, weight: .semibold, design: .serif))
+                            .foregroundStyle(.white)
+                            .padding(.top, 5)
+                            .padding(.horizontal)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        } // VStack
-                        
                         HStack {
-                            Text("Add to favourites")
+                            Text(beanType.popularity)
                                 .font(.system(size: 14, weight: .regular, design: .serif))
-                                .foregroundStyle(.blue)
+                                .foregroundStyle(ThemeColor.green)
+                                .padding(.leading)
+                                .padding(.bottom, 5)
                                 .padding(.trailing, 5)
-                            Image(systemName: "star")
-                                .foregroundStyle(.yellow)
-                                .font(.system(size: 14))
-                                .padding(.trailing)
+                            Text(String(format: "%.2f", beanType.rating))
+                                .font(.system(size: 14, weight: .regular, design: .serif))
+                                .foregroundStyle(ThemeColor.brown)
+                                .padding(.bottom, 5)
                         } // HStack
-                    } // HStack
-                    .padding(.bottom, 14)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    } // VStack
+                    .padding(.bottom, 20)
                     
                     
                     Text("Description")
@@ -68,15 +55,6 @@ struct BeansTypeView: View {
                          """)
                     .font(.system(size: 14, weight: .light, design: .serif))
                     .foregroundStyle(.white)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(nil)
-                    .padding(.horizontal)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.bottom, 40)
-                    
-                    Text("2 Tabs Here")
-                    .font(.system(size: 14, weight: .light, design: .serif))
-                    .foregroundStyle(.red)
                     .multilineTextAlignment(.leading)
                     .lineLimit(nil)
                     .padding(.horizontal)

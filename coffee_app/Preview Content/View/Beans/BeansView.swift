@@ -1,33 +1,6 @@
 import SwiftUI
 
-struct ImageTest: Identifiable {
-    var id = UUID()
-    var image: String
-}
-
-struct ImageTestView: View {
-    var anImage: ImageTest
-    
-    var body: some View {
-        Image(anImage.image)
-            .resizable()
-            .scaledToFit()
-            .frame(maxWidth: UIScreen.main.bounds.width)
-            .frame(height: UIScreen.main.bounds.width * (3 / 4))
-            .clipped()
-    }
-}
-
 struct BeansView: View {
-    let imagesTest = [
-        ImageTest(image: "beans_sale"),
-        ImageTest(image: "beans_sale"),
-        ImageTest(image: "beans_sale"),
-        ImageTest(image: "beans_sale"),
-        ImageTest(image: "beans_sale"),
-        ImageTest(image: "beans_sale"),
-    ]
-    
     // ADD NAVIGATION TO BEAN TYPES, DISCOVER, AND FARM SPOTLIGHT
     var body: some View {
         NavigationStack {

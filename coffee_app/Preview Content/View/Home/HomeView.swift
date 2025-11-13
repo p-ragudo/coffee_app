@@ -52,7 +52,7 @@ struct HomeView: View {
                     }, hSpacing: 16, vSpacing: 30)
                     .padding(.bottom, 40)
                     
-                    MoreButton(navigateTo: AnyView(FloatingTabBarView(selectedTab: 1)))
+                    MoreButton(navigateTo: AnyView(FloatingTabBarView(selectedTab: Tab.beans)))
                         .padding(.bottom, 50)
                     
                     
@@ -115,12 +115,12 @@ struct HomeView: View {
                             name: product.name,
                             desc: product.desc,
                             type: product.type,
-                            navigateTo: product.navigateTo
+                            navigateTo: AnyView(FloatingTabBarView(selectedTab: Tab.store))
                         )
                     }, hSpacing: 16, vSpacing: 30)
                     .padding(.bottom, 40)
                     
-                    MoreButton(navigateTo: AnyView(StoreView()))
+                    MoreButton(navigateTo: AnyView(FloatingTabBarView(selectedTab: Tab.store)))
                         .padding(.bottom, 80)
                     
                     // FOOTER
