@@ -33,8 +33,10 @@ struct SignUpView: View {
                     AuthTextField(
                         text: $password,
                         hintText: "Password",
-                        icon: Image(systemName: "lock.fill"))
-                        .padding(.bottom, 8)
+                        icon: Image(systemName: "lock.fill"),
+                        secureField: true
+                    )
+                    .padding(.bottom, 8)
                     
                     HStack {
                         Text("Already have an account? ")

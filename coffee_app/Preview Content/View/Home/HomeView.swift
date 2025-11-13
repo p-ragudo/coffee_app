@@ -52,7 +52,7 @@ struct HomeView: View {
                     }, hSpacing: 16, vSpacing: 30)
                     .padding(.bottom, 40)
                     
-                    MoreButton(navigateTo: AnyView(BeansView()))
+                    MoreButton(navigateTo: AnyView(FloatingTabBarView(selectedTab: 1)))
                         .padding(.bottom, 50)
                     
                     

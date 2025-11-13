@@ -8,6 +8,7 @@ struct StoreProductCard: View {
     var rating: Double
     var numOfSold: Int
     var storeProduct: StoreProduct
+    var imageScale: CGFloat = 1.0
     
     init(
         image: String,
@@ -15,7 +16,8 @@ struct StoreProductCard: View {
         price: Double,
         rating: Double,
         numOfSold: Int,
-        storeProduct: StoreProduct
+        storeProduct: StoreProduct,
+        imageScale: CGFloat = 1.0
     ) {
         self.image = image
         self.name = name
@@ -23,6 +25,7 @@ struct StoreProductCard: View {
         self.rating = rating
         self.numOfSold = numOfSold
         self.storeProduct = storeProduct
+        self.imageScale = imageScale
     }
     
     var body: some View {
@@ -31,7 +34,7 @@ struct StoreProductCard: View {
                 Image(image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 170)
+                    .frame(width: 170 * imageScale)
                 
                 Text(name)
                     .font(.system(size: 15, weight: .medium, design: .serif))

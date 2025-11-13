@@ -24,7 +24,7 @@ struct BeanTypeCard: View {
     }
     
     var body: some View {
-        NavigationLink(destination: BeansTypeView(beanType: beanType)) {
+        NavigationLink(destination: FloatingTabBarView(selectedTab: 1, customBeanType: beanType)) {
             VStack(alignment: .leading){
                 Image(image)
                     .resizable()

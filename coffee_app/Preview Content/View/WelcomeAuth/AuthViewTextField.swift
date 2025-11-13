@@ -6,6 +6,7 @@ struct AuthTextField: View {
     let icon: Image
     var iconTextPadding: CGFloat = 15
     var iconSize: CGFloat = 20
+    var secureField: Bool = false
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -28,18 +29,37 @@ struct AuthTextField: View {
             } // HStack
             
             // text field
-            TextField("", text: $text)
-                .font(.system(size: 16, weight: .light, design: .serif))
-                .foregroundStyle(.white)
-                .padding(.vertical, 15)
-                .disableAutocorrection(true)
-                .padding(.leading, iconSize + iconTextPadding + 8)
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.white, lineWidth: 1)
-                )
-                .accentColor(.white)
+            Group {
+                if secureField {
+                    SecureField("", text: $text)
+                        .font(.system(size: 16, weight: .light, design: .serif))
+                        .foregroundStyle(.white)
+                        .padding(.vertical, 15)
+                        .disableAutocorrection(true)
+                        .padding(.leading, iconSize + iconTextPadding + 8)
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.white, lineWidth: 1)
+                        )
+                        .accentColor(.white)
+                        .autocapitalization(.none)
+                } else {
+                    TextField("", text: $text)
+                        .font(.system(size: 16, weight: .light, design: .serif))
+                        .foregroundStyle(.white)
+                        .padding(.vertical, 15)
+                        .disableAutocorrection(true)
+                        .padding(.leading, iconSize + iconTextPadding + 8)
+                        .cornerRadius(10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.white, lineWidth: 1)
+                        )
+                        .accentColor(.white)
+                        .autocapitalization(.none)
+                }
+            }
         } // ZStack
     }
 }

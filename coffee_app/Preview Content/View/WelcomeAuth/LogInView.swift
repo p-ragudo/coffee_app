@@ -29,8 +29,10 @@ struct LogInView: View {
                     AuthTextField(
                         text: $password,
                         hintText: "Password",
-                        icon: Image(systemName: "lock.fill"))
-                        .padding(.bottom, 8)
+                        icon: Image(systemName: "lock.fill"),
+                        secureField: true
+                    )
+                    .padding(.bottom, 8)
                     
                     HStack {
                         Text("Don't have an account? ")
@@ -82,7 +84,7 @@ struct LogInView: View {
                     }
                     
                     NavigationLink(
-                                           destination: HomeView(),
+                                           destination: FloatingTabBarView(),
                                            isActive: $isLoggedIn // Trigger navigation when login is successful
                                        ) {
                                            EmptyView() // Invisible navigation link
