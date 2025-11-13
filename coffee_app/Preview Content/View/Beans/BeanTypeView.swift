@@ -10,7 +10,7 @@ struct BeanTypeView: View {
     }
     
     var body: some View {
-        NavigationLink(destination: BeansTypeView(beanType: beanType)) {
+        NavigationLink(destination: FloatingTabBarView(selectedTab: 1, customBeanType: beanType)) {
             ZStack {
                 Image("beans_type")
                     .resizable()
