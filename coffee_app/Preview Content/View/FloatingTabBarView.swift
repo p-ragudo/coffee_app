@@ -31,7 +31,7 @@ struct FloatingTabBarView: View {
                                     }
                                 }
                                 .tabItem {
-                                    Image(systemName: "person.fill")
+                                    Image(systemName: "star.fill")
                                 }
                                 .tag(1)
 
@@ -44,7 +44,7 @@ struct FloatingTabBarView: View {
                     .tag(2)
 
                 NavigationStack {
-                    CartView()
+                    StoreView()
                 }
                     .tabItem {
                         Image(systemName: "bag.fill")
@@ -66,7 +66,7 @@ struct FloatingTabBarView: View {
                 Spacer() // Push tab bar to bottom
                 HStack {
                     TabBarIcon(isSelected: selectedTab == 0, imageName: "house.fill", action: { selectedTab = 0 })
-                    TabBarIcon(isSelected: selectedTab == 1, imageName: "cup.fill", action: { selectedTab = 1 })
+                    TabBarIcon(isSelected: selectedTab == 1, imageName: "star.fill", action: { selectedTab = 1 })
                     TabBarIcon(isSelected: selectedTab == 2, imageName: "leaf.fill", action: { selectedTab = 2 })
                     TabBarIcon(isSelected: selectedTab == 3, imageName: "bag.fill", action: { selectedTab = 3 })
                     TabBarIcon(isSelected: selectedTab == 4, imageName: "person.fill", action: { selectedTab = 4 })
