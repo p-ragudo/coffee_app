@@ -52,7 +52,7 @@ struct FarmCard: View {
                 .padding(.horizontal)
                 .padding(.bottom, 10)
                 
-                NavigationLink(destination: FloatingTabBarView(selectedTab: Tab.home)) {
+                NavigationLink(destination: FloatingTabBarView(selectedTab: Tab.farms)) {
                     TextParagraph(text: "View Products")
                         .padding(.vertical, 8)
                         .frame(maxWidth: .infinity)
@@ -67,5 +67,5 @@ struct FarmCard: View {
 }
 
 #Preview {
-    FarmCard(farm: Farm(name: "Test Farm", location: "Test Location", ratings: 4.7, image: "farm_card"))
+    FarmCard(farm: Controller.farms.first!)
 }

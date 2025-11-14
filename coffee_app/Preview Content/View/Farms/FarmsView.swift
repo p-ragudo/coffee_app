@@ -37,6 +37,7 @@ struct FarmsView: View {
                     .padding(.bottom, 40)
                     
                 } // VStack
+                .padding(.bottom, 60)
                 
             } // ScrollView
             .background(.black)

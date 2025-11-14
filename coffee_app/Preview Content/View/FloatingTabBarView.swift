@@ -3,10 +3,12 @@ import SwiftUI
 struct FloatingTabBarView: View {
     @State private var selectedTab = 0 // Track selected tab
     @State private var customBeanType: BeanType? = nil
+    @State private var customFarm: Farm? = nil
     
-    init(selectedTab: Int = 0, customBeanType: BeanType? = nil) {
+    init(selectedTab: Int = 0, customBeanType: BeanType? = nil, customFarm: Farm? = nil) {
             _selectedTab = State(initialValue: selectedTab) // Initialize selectedTab with default or passed value
             _customBeanType = State(initialValue: customBeanType) // Initialize customBeanType with default or passed value
+            _customFarm = State(initialValue: customFarm)
         }
 
     var body: some View {
@@ -22,18 +24,16 @@ struct FloatingTabBarView: View {
                     .tag(0)
 
                 NavigationStack {
-                                    if let bean = customBeanType {
-                                        // If customBeanType is not nil, load the BeanDetailView
-                                        BeansTypeView(beanType: bean)
-                                    } else {
-                                        // Otherwise, load BeansView
-                                        BeansView()
-                                    }
-                                }
-                                .tabItem {
-                                    Image(systemName: "star.fill")
-                                }
-                                .tag(1)
+                    if let bean = customBeanType {
+                        BeansTypeView(beanType: bean)
+                    } else {
+                        BeansView()
+                    }
+                }
+                .tabItem {
+                    Image(systemName: "star.fill")
+                }
+                .tag(1)
 
                 NavigationStack {
                     FarmsView()

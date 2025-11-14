@@ -69,7 +69,7 @@ struct BeansView: View {
                         .padding(.horizontal)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.bottom, 10)
-                    ImageSliderView(items: Controller.beanProducts, automaticScrolling: false, content: { beanProduct in
+                    ImageSliderView(items: Controller.beanProducts, automaticScrolling: true, content: { beanProduct in
                         BeanProductCard(
                             image: beanProduct.image,
                             name: beanProduct.name,
