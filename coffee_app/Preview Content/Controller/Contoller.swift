@@ -5,6 +5,7 @@ class Controller {
     static var storeProductTypes: [StoreProductType] = StoreProductTypeProvider.getItems()
     static var beanProducts: [BeanProduct] = BeanProductsProvider.getItems()
     static var storeProducts: [StoreProduct] = StoreProductsProvider.getItems()
+    static var farms: [Farm] = FarmsProvider.getFarms()
 }
 
 class Utils {

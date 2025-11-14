@@ -36,7 +36,7 @@ struct FloatingTabBarView: View {
                                 .tag(1)
 
                 NavigationStack {
-                    HomeView()
+                    FarmsView()
                 }
                     .tabItem {
                         Image(systemName: "leaf.fill")

@@ -38,8 +38,6 @@ struct TextParagraph: View {
             .foregroundStyle(color)
             .multilineTextAlignment(.leading)
             .lineLimit(nil)
-            .padding(.horizontal)
-            .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

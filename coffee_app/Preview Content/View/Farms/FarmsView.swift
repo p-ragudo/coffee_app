@@ -24,17 +24,17 @@ struct FarmsView: View {
                     Philippine coffee farms grow all four bean types: Arabica, Robusta, Liberica (Barako), and Excelsa. From cool mountain highlands to farms, they produce unique flavors rooted in tradition and region.
                     """
                     )
+                    .padding(.horizontal)
                     .padding(.bottom, 40)
                     
                     TextSection(text: "Discover")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal)
                     
-                    // MAKE FARM CARD
-                    Image("farm_card")
-                        .resizable()
-                        .frame(maxWidth: .infinity)
-                        .scaledToFit()
+                    GridBuilderView(items: Controller.farms, columns: 1, content: { farm in
+                        FarmCard(farm: farm)
+                    },hSpacing: 0, vSpacing: 50, hPadding: 0)
+                    .padding(.bottom, 40)
                     
                 } // VStack
                 
@@ -50,4 +50,6 @@ struct FarmsView: View {
 #Preview {
     FarmsView()
 }
+
+
 

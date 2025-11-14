@@ -6,13 +6,15 @@ struct GridBuilderView<Item, Content: View>: View where Item: Identifiable {
     var content: (Item) -> Content
     var hSpacing: CGFloat
     var vSpacing: CGFloat
+    var hPadding: CGFloat
 
-    init(items: [Item], columns: Int, @ViewBuilder content: @escaping (Item) -> Content, hSpacing: CGFloat, vSpacing: CGFloat) {
+    init(items: [Item], columns: Int, @ViewBuilder content: @escaping (Item) -> Content, hSpacing: CGFloat, vSpacing: CGFloat, hPadding: CGFloat = 16) {
         self.items = items
         self.columns = columns
         self.content = content
         self.hSpacing = hSpacing
         self.vSpacing = vSpacing
+        self.hPadding = hPadding
     }
     
     var body: some View {
@@ -23,6 +25,6 @@ struct GridBuilderView<Item, Content: View>: View where Item: Identifiable {
                 content(item)
             }
         }
-        .padding(.horizontal)
+        .padding(.horizontal, hPadding)
     }
 }
