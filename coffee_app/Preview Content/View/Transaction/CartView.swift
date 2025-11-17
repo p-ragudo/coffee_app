@@ -2,16 +2,15 @@ import SwiftUI
 import SwiftData
 
 struct CartView: View {
-//    @Environment(\.modelContext) var context
-    @Query(filter: #Predicate<Account> {
-        $0.username == Session.shared.loggedInAccount?.username &&
-        $0.email == Session.shared.loggedInAccount?.email &&
-        $0.password == Session.shared.loggedInAccount?.password
-    })
-    var loggedInAccount: [Account]
-    
+
+    private var session = Session.shared
+        
     var currentAccount: Account? {
-        return loggedInAccount.first
+        session.loggedInAccount
+    }
+    
+    var cartItems: [CartItem] {
+        return currentAccount?.cartItems ?? []
     }
     
     var body: some View {
@@ -21,7 +20,12 @@ struct CartView: View {
                     TextPageTitle(text: "Cart")
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    if currentAccount.cartItems.isEmpty {
+                    if currentAccount == nil {
+                        Text("Please log in to view your cart.")
+                            .foregroundColor(.gray)
+                            .padding(.top, 50)
+                    }
+                    else if cartItems.isEmpty {
                         VStack {
                             Image(systemName: "cart.fill.badge.plus") // Placeholder image
                                 .resizable()
@@ -36,17 +40,17 @@ struct CartView: View {
                         }
                     } else {
                         // Display cart items if the cart is not empty
-                        ForEach(currentAccount?.cartItems) { item in
-                            CartItemView(cartController: cartController, item: item)
+                        ForEach(cartItems) { item in
+                            CartItemView(item: item)
                         }
                     }
 
-                    TextSection(
-                        text: "Total: ₱ \(String(format: "%.2f", cartController.totalPrice()))",
-                        size: 24,
-                        weight: .bold,
-                        color: ThemeColor.brown
-                    )
+//                    TextSection(
+//                        text: "Total: ₱ \(String(format: "%.2f", cartController.totalPrice()))",
+//                        size: 24,
+//                        weight: .bold,
+//                        color: ThemeColor.brown
+////                    )
                 }
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity)

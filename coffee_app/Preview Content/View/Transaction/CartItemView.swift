@@ -1,14 +1,13 @@
 import SwiftUI
 
 struct CartItemView: View {
-    @ObservedObject var cartController: CartController
     var item: CartItem
     
     var body: some View {
         HStack {
             // Checkbox for selection
             Button(action: {
-                cartController.toggleSelection(for: item)
+                print("hehe")
             }) {
                 Image(systemName: item.isSelected ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(item.isSelected ? .green : .gray)
@@ -40,7 +39,7 @@ struct CartItemView: View {
             // Quantity Controls
             HStack {
                 Button(action: {
-                    cartController.decreaseQuantity(for: item)
+                    print("hehe")
                 }) {
                     Text("-")
                         .frame(width: 30, height: 30)
@@ -56,7 +55,7 @@ struct CartItemView: View {
                     .cornerRadius(8)
                 
                 Button(action: {
-                    cartController.increaseQuantity(for: item)
+                    print("hehe")
                 }) {
                     Text("+")
                         .frame(width: 30, height: 30)
@@ -77,7 +76,9 @@ struct CartItemView: View {
 
 struct CartItemView_Previews: PreviewProvider {
     static var previews: some View {
-        CartItemView(cartController: CartController(), item: CartItem(name: "Dark Roast Coffee", price: 200, image: "arabica_card", quantity: 2, isSelected: false))
+        CartItemView(item: CartItem(
+            name: "Dark Roast Coffee", price: 200, image: "arabica_card", quantity: 2, isSelected: false
+        ))
             .previewLayout(.sizeThatFits)
             .padding(.horizontal)
             .background(Color.black)
