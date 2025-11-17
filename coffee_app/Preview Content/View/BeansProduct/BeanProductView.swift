@@ -8,6 +8,8 @@ struct Size: Identifiable {
 }
 
 struct BeanProductView: View {
+    @Environment(\.modelContext) var context
+    
     var beanProduct: BeanProduct
     
     // ADD ROAST TYPE FOR PRODUCT IN MODEL. THIS IS A PLACEHOLDER
@@ -180,8 +182,20 @@ struct BeanProductView: View {
                     
                     HStack {
                         Button(action: {
-                            // Handle Add to Cart action
-                            print("Add to Cart tapped")
+                            let cartItem = CartItem(
+                                name: beanProduct.name,
+                                price: beanProduct.price,
+                                image: beanProduct.image,
+                                quantity: 1,
+                                isSelected: true
+                            )
+                            Session.shared.loggedInAccount?.cartItems.append(cartItem)
+                            
+                            do {
+                                try context.save()
+                            } catch {
+                                print("Failed to add to cart: \(error)")
+                            }
                         }) {
                             Text("Add to Cart")
                                 .font(.headline)
