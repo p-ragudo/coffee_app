@@ -70,6 +70,12 @@ struct SignUpView: View {
                     .simultaneousGesture(TapGesture().onEnded {
                         let account = Account(username: username, email: email, password: password)
                         context.insert(account)
+                        
+                        do {
+                            try context.save()
+                        } catch {
+                            print("Failed to save account: \(error)")
+                        }
                     })
                     
                 } // VStack

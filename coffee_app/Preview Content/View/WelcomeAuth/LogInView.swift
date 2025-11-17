@@ -8,7 +8,7 @@ struct LogInView: View {
     @State private var loginError: String? = nil
     @State private var isLoggedIn: Bool = false
     
-    @Query(sort: \Account.username) var accounts: [Account]
+    @Query var accounts: [Account]
     
     var body: some View {
         NavigationStack{
@@ -103,13 +103,14 @@ struct LogInView: View {
     }
     
     func login() -> Bool {
-        if accounts.first(where: {
+        if let foundAccount = accounts.first(where: { account in
             (
-                $0.username.lowercased() == usernameEmail.lowercased() ||
-                $0.email.lowercased() == usernameEmail.lowercased()
+                account.username.lowercased() == usernameEmail.lowercased() ||
+                account.email.lowercased() == usernameEmail.lowercased()
             ) &&
-            $0.password == password
-        }) != nil {
+            account.password == password
+        }) {
+            Session.shared.loggedInAccount = foundAccount
             return true
         }
         

@@ -1,7 +1,18 @@
 import SwiftUI
+import SwiftData
 
 struct CartView: View {
-    @StateObject var cartController = CartController()  // Use CartController to manage data
+//    @Environment(\.modelContext) var context
+    @Query(filter: #Predicate<Account> {
+        $0.username == Session.shared.loggedInAccount?.username &&
+        $0.email == Session.shared.loggedInAccount?.email &&
+        $0.password == Session.shared.loggedInAccount?.password
+    })
+    var loggedInAccount: [Account]
+    
+    var currentAccount: Account? {
+        return loggedInAccount.first
+    }
     
     var body: some View {
         NavigationStack {
@@ -10,7 +21,7 @@ struct CartView: View {
                     TextPageTitle(text: "Cart")
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    if cartController.cartItems.isEmpty {
+                    if currentAccount.cartItems.isEmpty {
                         VStack {
                             Image(systemName: "cart.fill.badge.plus") // Placeholder image
                                 .resizable()
@@ -25,7 +36,7 @@ struct CartView: View {
                         }
                     } else {
                         // Display cart items if the cart is not empty
-                        ForEach(cartController.cartItems) { item in
+                        ForEach(currentAccount?.cartItems) { item in
                             CartItemView(cartController: cartController, item: item)
                         }
                     }
@@ -47,5 +58,5 @@ struct CartView: View {
 }
 
 #Preview {
-    CartView(cartController: CartController())
+    CartView()
 }

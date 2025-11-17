@@ -6,6 +6,7 @@ struct coffee_appApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(Session.shared)
         }
         .modelContainer(for: [Account.self])
     }
