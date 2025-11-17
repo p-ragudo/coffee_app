@@ -32,8 +32,8 @@ struct BeanProductView: View {
     }
     
     
-    @State var selectedRoastType: Int = 0
-    @State var selectedSize: Int = 0
+    @State var selectedRoastType = "Light Roast"
+    @State var selectedSize = "100g (3.5oz)"
     
     var body: some View {
         NavigationStack {
@@ -47,13 +47,7 @@ struct BeanProductView: View {
                     
                     Group {
                         VStack(alignment: .leading) {
-                            HStack {
-                                TextPageTitle(text: beanProduct.name)
-                                Spacer()
-                                Image(systemName: "heart")
-                                    .foregroundStyle(.red)
-                                    .font(.system(size: 20))
-                            }
+                            TextPageTitle(text: beanProduct.name)
                             .padding(.bottom, 5)
                             
                             HStack {
@@ -81,7 +75,8 @@ struct BeanProductView: View {
                             GridBuilderView(items: roastTypes, columns: 2, content: { roastType in
                                 WhiteBorderButton(
                                     text: roastType.type,
-                                    width: 180
+                                    width: 180,
+                                    selected: $selectedRoastType
                                 )
                             }, hSpacing: 5, vSpacing: 8, hPadding: 0)
                             .padding(.bottom, 25)
@@ -92,7 +87,8 @@ struct BeanProductView: View {
                             GridBuilderView(items: sizes, columns: 3, content: { size in
                                 WhiteBorderButton(
                                     text: size.size,
-                                    width: 115
+                                    width: 115,
+                                    selected: $selectedSize
                                 )
                             }, hSpacing: 0, vSpacing: 10, hPadding: 0)
                             .padding(.bottom, 30)
