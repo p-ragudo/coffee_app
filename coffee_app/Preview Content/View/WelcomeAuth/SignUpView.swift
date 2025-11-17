@@ -5,7 +5,7 @@ struct SignUpView: View {
     @State var email: String = ""
     @State var password: String = ""
     
-    @StateObject var accountController = AccountController()
+    @Environment(\.modelContext) var context
     
     var body: some View {
         NavigationStack{
@@ -68,9 +68,8 @@ struct SignUpView: View {
                         }
                     )
                     .simultaneousGesture(TapGesture().onEnded {
-                        let newAccount = Account(username: username, email: email, password: password)
-                        accountController.saveAccount(newAccount)
-                        accountController.printAccount()
+                        let account = Account(username: username, email: email, password: password)
+                        context.insert(account)
                     })
                     
                 } // VStack

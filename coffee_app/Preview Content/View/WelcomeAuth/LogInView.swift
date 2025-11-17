@@ -1,12 +1,14 @@
 import SwiftUI
+import SwiftData
 
 struct LogInView: View {
     @State var usernameEmail: String = ""
     @State var password: String = ""
     
-    @StateObject var accountController = AccountController()
     @State private var loginError: String? = nil
     @State private var isLoggedIn: Bool = false
+    
+    @Query(sort: \Account.username) var accounts: [Account]
     
     var body: some View {
         NavigationStack{
@@ -61,7 +63,7 @@ struct LogInView: View {
                         }
                         
                         // Attempt to log in
-                        let isValidLogin = accountController.login(usernameEmail: usernameEmail, password: password)
+                        let isValidLogin = login()
                         if isValidLogin {
                             // If login is successful, navigate to HomeView
                             print("Login successful!")
@@ -98,6 +100,20 @@ struct LogInView: View {
             .edgesIgnoringSafeArea(.all) // REMOVE ONCE BACKGROUND IMAGE IS PRESENT
             
         } // NavigationStack
+    }
+    
+    func login() -> Bool {
+        if accounts.first(where: {
+            (
+                $0.username.lowercased() == usernameEmail.lowercased() ||
+                $0.email.lowercased() == usernameEmail.lowercased()
+            ) &&
+            $0.password == password
+        }) != nil {
+            return true
+        }
+        
+        return false
     }
 }
 
