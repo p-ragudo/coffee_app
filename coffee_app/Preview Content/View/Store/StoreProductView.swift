@@ -4,9 +4,8 @@ import Foundation
 struct StoreProductView: View {
     var storeProduct: StoreProduct
     
-    init(storeProduct: StoreProduct) {
-        self.storeProduct = storeProduct
-    }
+    @Environment(\.modelContext) var context
+    @State private var showAlert = false
     
     var body: some View {
         NavigationStack {
@@ -99,46 +98,32 @@ struct StoreProductView: View {
                     
                     HStack {
                         Button(action: {
-//                            let cartItem = BeanCartItem(
-//                                name: beanProduct.name,
-//                                price: beanProduct.price,
-//                                totalPrice: beanProduct.price,
-//                                image: beanProduct.image,
-//                                quantity: 1,
-//                                roastType: selectedRoastType,
-//                                size: selectedSize,
-//                                isSelected: true
-//                            )
-//
-//                            let storeItem = StoreCartItem(
-//                                name: ,
-//                                price: <#T##Double#>,
-//                                totalPrice: <#T##Double#>,
-//                                image: <#T##String#>,
-//                                quantity: <#T##Int#>,
-//                                isSelected: <#T##Bool#>
-//                            )
+                            if let account = Session.shared.loggedInAccount {
+                                if let existingItem = account.storeCartItems.first(where: { item in
+                                    StoreCartItem.matches(item, product: storeProduct)
+                                }) {
+                                    existingItem.quantity += 1
+                                    existingItem.totalPrice += existingItem.price
+                                } else {
+                                    account.storeCartItems.append(
+                                        StoreCartItem(
+                                            name: storeProduct.name,
+                                            price: storeProduct.price,
+                                            totalPrice: storeProduct.price,
+                                            image: storeProduct.image,
+                                            quantity: 1,
+                                            isSelected: true
+                                        )
+                                    )
+                                }
+                            }
                             
-                            
-//                            if let existingItem = Session.shared.loggedInAccount?.cartItems.first(where: {
-//                                $0.name == cartItem.name &&
-//                                $0.price == cartItem.price &&
-//                                $0.image == cartItem.image &&
-//                                $0.roastType == cartItem.roastType &&
-//                                $0.size == cartItem.size
-//                            }) {
-//                                existingItem.quantity += 1
-//                                existingItem.totalPrice += existingItem.price
-//                            } else {
-//                                Session.shared.loggedInAccount?.cartItems.append(cartItem)
-//                            }
-//                            
-//                            do {
-//                                try context.save()
-//                                showAlert = true
-//                            } catch {
-//                                print("Failed to add to cart: \(error)")
-//                            }
+                            do {
+                                try context.save()
+                                showAlert = true
+                            } catch {
+                                print("Failed to add to cart: \(error)")
+                            }
                         }) {
                             Text("Add to Cart")
                                 .font(.headline)
@@ -147,9 +132,9 @@ struct StoreProductView: View {
                                 .padding()
                                 .background(ThemeColor.brown)
                         }
-//                        .alert(isPresented: $showAlert) {
-//                            Alert(title: Text("Success"), message: Text("Successfully Added to Cart"), dismissButton: .default(Text("OK")))
-//                        }
+                        .alert(isPresented: $showAlert) {
+                            Alert(title: Text("Success"), message: Text("Successfully Added to Cart"), dismissButton: .default(Text("OK")))
+                        }
                         
                         Button(action: {
                             print("Buy Now tapped")

@@ -23,4 +23,12 @@ class BeanCartItem {
         self.isSelected = isSelected
         self.account = account
     }
+    
+    static func matches(_ cartItem: BeanCartItem, product: BeanProduct, roastType: String, size: String) -> Bool {
+        return cartItem.name == product.name &&
+               cartItem.price == product.price &&
+               cartItem.image == product.image &&
+               cartItem.roastType == roastType && // Include specific selections
+               cartItem.size == size
+    }
 }

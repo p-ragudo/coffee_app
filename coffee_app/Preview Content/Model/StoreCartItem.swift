@@ -19,5 +19,11 @@ class StoreCartItem {
         self.isSelected = isSelected
         self.account = account
     }
+    
+    static func matches(_ cartItem: StoreCartItem, product: StoreProduct) -> Bool {
+        return cartItem.name == product.name &&
+               cartItem.price == product.price &&
+               cartItem.image == product.image
+    }
 }
 

@@ -182,28 +182,26 @@ struct BeanProductView: View {
                     
                     HStack {
                         Button(action: {
-                            let cartItem = BeanCartItem(
-                                name: beanProduct.name,
-                                price: beanProduct.price,
-                                totalPrice: beanProduct.price,
-                                image: beanProduct.image,
-                                quantity: 1,
-                                roastType: selectedRoastType,
-                                size: selectedSize,
-                                isSelected: true
-                            )
-                            
-                            if let existingItem = Session.shared.loggedInAccount?.beanCartItems.first(where: {
-                                $0.name == cartItem.name &&
-                                $0.price == cartItem.price &&
-                                $0.image == cartItem.image &&
-                                $0.roastType == cartItem.roastType &&
-                                $0.size == cartItem.size
-                            }) {
-                                existingItem.quantity += 1
-                                existingItem.totalPrice += existingItem.price
-                            } else {
-                                Session.shared.loggedInAccount?.beanCartItems.append(cartItem)
+                            if let account = Session.shared.loggedInAccount {
+                                if let existingItem = account.beanCartItems.first(where: { item in
+                                    BeanCartItem.matches(item, product: beanProduct, roastType: selectedRoastType, size: selectedSize)
+                                }) {
+                                    existingItem.quantity += 1
+                                    existingItem.totalPrice += existingItem.price
+                                } else {
+                                    account.beanCartItems.append(
+                                        BeanCartItem(
+                                            name: beanProduct.name,
+                                            price: beanProduct.price,
+                                            totalPrice: beanProduct.price,
+                                            image: beanProduct.image,
+                                            quantity: 1,
+                                            roastType: selectedRoastType,
+                                            size: selectedSize,
+                                            isSelected: true
+                                        )
+                                    )
+                                }
                             }
                             
                             do {

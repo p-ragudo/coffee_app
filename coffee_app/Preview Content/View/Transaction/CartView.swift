@@ -9,8 +9,12 @@ struct CartView: View {
         session.loggedInAccount
     }
     
-    var cartItems: [BeanCartItem] {
+    var beanCartItems: [BeanCartItem] {
         return currentAccount?.beanCartItems ?? []
+    }
+    
+    var storeCartItems: [StoreCartItem] {
+        return currentAccount?.storeCartItems ?? []
     }
     
     var body: some View {
@@ -25,8 +29,8 @@ struct CartView: View {
                             .foregroundColor(.gray)
                             .padding(.top, 50)
                     }
-                    else if cartItems.isEmpty {
-                        VStack {
+                    else if beanCartItems.isEmpty && storeCartItems.isEmpty {
+                        VStack(alignment: .center) {
                             Image(systemName: "cart.fill.badge.plus") // Placeholder image
                                 .resizable()
                                 .scaledToFit()
@@ -40,17 +44,11 @@ struct CartView: View {
                         }
                     } else {
                         // Display cart items if the cart is not empty
-                        ForEach(cartItems) { item in
+                        ForEach(beanCartItems) { item in
                             BeanCartItemView(item: item)
                         }
                     }
-
-//                    TextSection(
-//                        text: "Total: ₱ \(String(format: "%.2f", cartController.totalPrice()))",
-//                        size: 24,
-//                        weight: .bold,
-//                        color: ThemeColor.brown
-////                    )
+                    
                 }
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity)
