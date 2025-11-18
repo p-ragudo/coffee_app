@@ -9,7 +9,11 @@ struct StoreCartItemView: View {
         HStack {
             // Checkbox for selection
             Button(action: {
-                print("hehe")
+                if item.isSelected {
+                    item.isSelected = false
+                } else {
+                    item.isSelected = true
+                }
             }) {
                 Image(systemName: item.isSelected ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(item.isSelected ? .green : .gray)

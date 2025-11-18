@@ -3,10 +3,10 @@ import SwiftData
 
 @main
 struct coffee_appApp: App {
-    init() {
-        // REMOVE this call before releasing your app!
-        deleteSwiftDataStore(for: [Account.self])
-    }
+//    init() {
+//        // REMOVE this call before releasing your app!
+//        deleteSwiftDataStore(for: [Account.self])
+//    }
     
     var body: some Scene {
         WindowGroup {
