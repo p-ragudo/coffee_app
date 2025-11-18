@@ -9,7 +9,7 @@ struct CartView: View {
         session.loggedInAccount
     }
     
-    var cartItems: [CartItem] {
+    var cartItems: [BeanCartItem] {
         return currentAccount?.cartItems ?? []
     }
     
@@ -41,7 +41,7 @@ struct CartView: View {
                     } else {
                         // Display cart items if the cart is not empty
                         ForEach(cartItems) { item in
-                            CartItemView(item: item)
+                            BeanCartItemView(item: item)
                         }
                     }
 

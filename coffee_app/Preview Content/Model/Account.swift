@@ -5,7 +5,7 @@ class Account {
     var username: String
     var email: String
     var password: String
-    var cartItems = [CartItem]()
+    var cartItems = [BeanCartItem]()
     
     init(username: String, email: String, password: String) {
         self.username = username

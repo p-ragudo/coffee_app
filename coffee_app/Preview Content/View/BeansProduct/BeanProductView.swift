@@ -1,7 +1,6 @@
 import SwiftUI
 import Foundation
 
-// THIS IS A PLACEHOLDER
 struct Size: Identifiable {
     var id = UUID()
     var size: String
@@ -36,6 +35,7 @@ struct BeanProductView: View {
     
     @State var selectedRoastType = "Light Roast"
     @State var selectedSize = "100g (3.5oz)"
+    @State private var showAlert = false
     
     var body: some View {
         NavigationStack {
@@ -182,17 +182,33 @@ struct BeanProductView: View {
                     
                     HStack {
                         Button(action: {
-                            let cartItem = CartItem(
+                            let cartItem = BeanCartItem(
                                 name: beanProduct.name,
                                 price: beanProduct.price,
+                                totalPrice: beanProduct.price,
                                 image: beanProduct.image,
                                 quantity: 1,
+                                roastType: selectedRoastType,
+                                size: selectedSize,
                                 isSelected: true
                             )
-                            Session.shared.loggedInAccount?.cartItems.append(cartItem)
+                            
+                            if let existingItem = Session.shared.loggedInAccount?.cartItems.first(where: {
+                                $0.name == cartItem.name &&
+                                $0.price == cartItem.price &&
+                                $0.image == cartItem.image &&
+                                $0.roastType == cartItem.roastType &&
+                                $0.size == cartItem.size
+                            }) {
+                                existingItem.quantity += 1
+                                existingItem.totalPrice += existingItem.price
+                            } else {
+                                Session.shared.loggedInAccount?.cartItems.append(cartItem)
+                            }
                             
                             do {
                                 try context.save()
+                                showAlert = true
                             } catch {
                                 print("Failed to add to cart: \(error)")
                             }
@@ -203,6 +219,9 @@ struct BeanProductView: View {
                                 .frame(maxWidth: .infinity) // Take up equal space
                                 .padding()
                                 .background(ThemeColor.brown)
+                        }
+                        .alert(isPresented: $showAlert) {
+                            Alert(title: Text("Success"), message: Text("Successfully Added to Cart"), dismissButton: .default(Text("OK")))
                         }
                         
                         Button(action: {

@@ -86,11 +86,11 @@ struct LogInView: View {
                     }
                     
                     NavigationLink(
-                                           destination: FloatingTabBarView(),
-                                           isActive: $isLoggedIn // Trigger navigation when login is successful
-                                       ) {
-                                           EmptyView() // Invisible navigation link
-                                       }
+                       destination: FloatingTabBarView(),
+                       isActive: $isLoggedIn
+                    ){
+                       EmptyView()
+                    }
                     
                 } // VStack
             } // ZStack
