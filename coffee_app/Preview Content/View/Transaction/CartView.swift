@@ -10,7 +10,7 @@ struct CartView: View {
     }
     
     var cartItems: [BeanCartItem] {
-        return currentAccount?.cartItems ?? []
+        return currentAccount?.beanCartItems ?? []
     }
     
     var body: some View {

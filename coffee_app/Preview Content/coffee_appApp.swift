@@ -3,11 +3,10 @@ import SwiftData
 
 @main
 struct coffee_appApp: App {
-//    init() {
-//            // 🛑 IMPORTANT: Only run this during the testing phase.
-//            // REMOVE this call before releasing your app!
-//            deleteSwiftDataStore(for: [Account.self])
-//        }
+    init() {
+        // REMOVE this call before releasing your app!
+        deleteSwiftDataStore(for: [Account.self])
+    }
     
     var body: some Scene {
         WindowGroup {
@@ -34,7 +33,7 @@ struct coffee_appApp: App {
             // 3. Check if the store file exists and delete it
             if FileManager.default.fileExists(atPath: storeURL.path) {
                 try FileManager.default.removeItem(at: storeURL)
-                print("✅ Successfully deleted SwiftData store: \(storeURL.lastPathComponent)")
+                print("Successfully deleted SwiftData store: \(storeURL.lastPathComponent)")
             } else {
                 print("Store file not found, no need to delete.")
             }
@@ -45,11 +44,11 @@ struct coffee_appApp: App {
             // which, in the case of the default store is the default.store directory
             if FileManager.default.fileExists(atPath: directoryURL.path) {
                  try FileManager.default.removeItem(at: directoryURL)
-                 print("✅ Successfully deleted SwiftData store directory: \(directoryURL.lastPathComponent)")
+                 print("Successfully deleted SwiftData store directory: \(directoryURL.lastPathComponent)")
             }
             
         } catch {
-            print("❌ Error deleting SwiftData store: \(error.localizedDescription)")
+            print("Error deleting SwiftData store: \(error.localizedDescription)")
         }
     }
 }

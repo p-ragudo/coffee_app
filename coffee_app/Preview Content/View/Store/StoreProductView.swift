@@ -10,102 +10,166 @@ struct StoreProductView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Image("store_bg")
-                        .resizable()
-                        .frame(maxWidth: .infinity)
-                        .scaledToFit()
-                        .padding(.top, 50)
+            ZStack {
+                
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        Image("store_bg")
+                            .resizable()
+                            .frame(maxWidth: .infinity)
+                            .scaledToFit()
+                            .padding(.top, 50)
+                        
+                        Group {
+                            TextPageTitle(text: storeProduct.name)
+                                .padding(.bottom, 5)
+                            
+                            HStack {
+                                Image(systemName: "star.fill")
+                                    .foregroundStyle(.yellow)
+                                    .font(.system(size: 12))
+
+                                TextParagraph(
+                                    text: "\(String(format: "%.1f", storeProduct.rating)) / 5",
+                                    color: ThemeColor.green
+                                )
+                                .padding(.trailing, 15)
+                                
+                                TextParagraph(
+                                    text: "\(Utils.formatAsK(number: storeProduct.numOfSold))+ sold",
+                                    color: .blue
+                                )
+                                
+                            }
+                            .padding(.bottom, 2)
+                            
+                            Text("₱ \(String(format: "%.2f", storeProduct.price))")
+                                .font(.system(size: 28, weight: .semibold, design: .serif))
+                                .foregroundStyle(ThemeColor.brown)
+                                .padding(.bottom, 30)
+                            
+                            
+                            // INSERT FARM HERE
+                            
+                            Divider()
+                                .background(.white)
+                                .padding(.bottom, 30)
+                            
+                            TextSection(text: "Description")
+                                .padding(.bottom, 15)
+                            
+                            TextParagraph(text:
+                                """
+                                This is where the description of the farm or shop goes. This is where they will describe all about their farm, the products they produce, or whatever they may be inclined to put in this section
+                                
+                                Additional things to say or describe a product will be here. It will be up to the shop or farm to decide what descriptions and product specifications they will include. Just that this section is for that purpose
+                                
+                                One last paragraph to demonstrate this section of the page. This is where descriptions will go about the product. More may be said depending on the farm and the descriptions and information they include. It is up to them.
+                                """
+                            )
+                            .padding(.bottom, 30)
+                            
+                            Divider()
+                                .background(.white)
+                                .padding(.bottom, 40)
+                            TextSection(text: "You Might Like")
+                        }
+                        .padding(.horizontal)
+                        
+                        // THIS IS A PLACEHOLDER FOR THE SLIDER
+                        GridBuilderView(items: Controller.storeProducts, columns: 2, content: { product in
+                            StoreProductCard(
+                                image: product.image,
+                                name: product.name,
+                                price: product.price,
+                                rating: product.rating,
+                                numOfSold: product.numOfSold,
+                                storeProduct: product
+                            )
+                        }, hSpacing: 20, vSpacing: 40)
+                        .padding(.bottom, 80)
+                        
+                    } // Vstack
+                } // ScrollView
+                .background(.black)
+                .edgesIgnoringSafeArea(.top)
+                
+                VStack {
+                    Spacer()
                     
                     HStack {
-                        Text(storeProduct.name)
-                            .font(.system(size: 24, weight: .semibold, design: .serif))
-                            .foregroundStyle(.white)
-                        Spacer()
-                        Image(systemName: "heart")
-                            .foregroundStyle(.red)
-                            .font(.system(size: 20))
-                    }
-                    .padding(.horizontal)
-                    .padding(.bottom, 5)
-                    
-                    HStack {
-                        Image(systemName: "star.fill")
-                            .foregroundStyle(.yellow)
-                            .font(.system(size: 12))
-                        Text("\(String(format: "%.1f", storeProduct.rating)) / 5")
-                            .font(.system(size: 14, weight: .light, design: .serif))
-                            .foregroundStyle(ThemeColor.green)
-                            .padding(.trailing, 15)
-                        Text("\(Utils.formatAsK(number: storeProduct.numOfSold))+ sold")
-                            .font(.system(size: 14, weight: .light, design: .serif))
-                            .foregroundStyle(.blue)
-                    }
-                    .padding(.horizontal)
-                    .padding(.bottom, 2)
-                    
-                    Text("₱ \(String(format: "%.2f", storeProduct.price))")
-                        .font(.system(size: 28, weight: .semibold, design: .serif))
-                        .foregroundStyle(ThemeColor.brown)
-                        .padding(.horizontal)
-                        .padding(.bottom, 30)
-                    
-                    
-                    // INSERT FARM HERE
-                    
-                    Divider()
-                        .background(.white)
-                        .padding(.bottom, 30)
-                        .padding(.horizontal)
-                    
-                    Text("Description")
-                        .font(.system(size: 20, weight: .semibold, design: .serif))
-                        .foregroundStyle(.white)
-                        .padding(.horizontal)
-                        .padding(.bottom, 15)
-                    Text(
-                        """
-                        This is where the description of the farm or shop goes. This is where they will describe all about their farm, the products they produce, or whatever they may be inclined to put in this section
+                        Button(action: {
+//                            let cartItem = BeanCartItem(
+//                                name: beanProduct.name,
+//                                price: beanProduct.price,
+//                                totalPrice: beanProduct.price,
+//                                image: beanProduct.image,
+//                                quantity: 1,
+//                                roastType: selectedRoastType,
+//                                size: selectedSize,
+//                                isSelected: true
+//                            )
+//
+//                            let storeItem = StoreCartItem(
+//                                name: ,
+//                                price: <#T##Double#>,
+//                                totalPrice: <#T##Double#>,
+//                                image: <#T##String#>,
+//                                quantity: <#T##Int#>,
+//                                isSelected: <#T##Bool#>
+//                            )
+                            
+                            
+//                            if let existingItem = Session.shared.loggedInAccount?.cartItems.first(where: {
+//                                $0.name == cartItem.name &&
+//                                $0.price == cartItem.price &&
+//                                $0.image == cartItem.image &&
+//                                $0.roastType == cartItem.roastType &&
+//                                $0.size == cartItem.size
+//                            }) {
+//                                existingItem.quantity += 1
+//                                existingItem.totalPrice += existingItem.price
+//                            } else {
+//                                Session.shared.loggedInAccount?.cartItems.append(cartItem)
+//                            }
+//                            
+//                            do {
+//                                try context.save()
+//                                showAlert = true
+//                            } catch {
+//                                print("Failed to add to cart: \(error)")
+//                            }
+                        }) {
+                            Text("Add to Cart")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity) // Take up equal space
+                                .padding()
+                                .background(ThemeColor.brown)
+                        }
+//                        .alert(isPresented: $showAlert) {
+//                            Alert(title: Text("Success"), message: Text("Successfully Added to Cart"), dismissButton: .default(Text("OK")))
+//                        }
                         
-                        Additional things to say or describe a product will be here. It will be up to the shop or farm to decide what descriptions and product specifications they will include. Just that this section is for that purpose
-                        
-                        One last paragraph to demonstrate this section of the page. This is where descriptions will go about the product. More may be said depending on the farm and the descriptions and information they include. It is up to them.
-                        """
-                    )
-                        .font(.system(size: 14, weight: .light, design: .serif))
-                        .foregroundStyle(.white)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(nil)
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.bottom, 40)
-                    
-                    Divider()
-                        .background(.white)
-                        .padding(.bottom, 40)
-                        .padding(.horizontal)
-                    
-                    Text("You Might Like")
-                        .font(.system(size: 20, weight: .semibold, design: .serif))
-                        .foregroundStyle(.white)
-                        .padding(.horizontal)
-                    // THIS IS A PLACEHOLDER FOR THE SLIDER
-                    GridBuilderView(items: Controller.storeProducts, columns: 2, content: { product in
-                        StoreProductCard(
-                            image: product.image,
-                            name: product.name,
-                            price: product.price,
-                            rating: product.rating,
-                            numOfSold: product.numOfSold,
-                            storeProduct: product
-                        )
-                    }, hSpacing: 20, vSpacing: 40)
-                    
-                } // Vstack
-            } // ScrollView
-            .background(.black)
-            .edgesIgnoringSafeArea(.top)
+                        Button(action: {
+                            print("Buy Now tapped")
+                        }) {
+                            Text("Buy Now")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .frame(maxWidth: .infinity) // Take up equal space
+                                .padding()
+                                .background(ThemeColor.green)
+                        }
+                    }
+                    .padding(.bottom, 20) // Space from the bottom edge
+                    .background(Color.black) // Tab bar background color
+                    .shadow(radius: 10) // Floating effect shadow
+                    .padding(.bottom, 15)
+                }
+                .ignoresSafeArea(edges: .bottom)
+                
+            } // ZStack
             
         } // NavigationStack
         .toolbarBackground(.black, for: .navigationBar)

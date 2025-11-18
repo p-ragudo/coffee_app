@@ -193,7 +193,7 @@ struct BeanProductView: View {
                                 isSelected: true
                             )
                             
-                            if let existingItem = Session.shared.loggedInAccount?.cartItems.first(where: {
+                            if let existingItem = Session.shared.loggedInAccount?.beanCartItems.first(where: {
                                 $0.name == cartItem.name &&
                                 $0.price == cartItem.price &&
                                 $0.image == cartItem.image &&
@@ -203,7 +203,7 @@ struct BeanProductView: View {
                                 existingItem.quantity += 1
                                 existingItem.totalPrice += existingItem.price
                             } else {
-                                Session.shared.loggedInAccount?.cartItems.append(cartItem)
+                                Session.shared.loggedInAccount?.beanCartItems.append(cartItem)
                             }
                             
                             do {
