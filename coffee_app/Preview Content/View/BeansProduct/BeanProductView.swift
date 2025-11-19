@@ -101,15 +101,7 @@ struct BeanProductView: View {
                             
                             TextSection(text: "Description")
                                 .padding(.bottom, 15)
-                            TextParagraph(text:
-                                """
-                                This is where the description of the farm or shop goes. This is where they will describe all about their farm, the products they produce, or whatever they may be inclined to put in this section
-                                
-                                Additional things to say or describe a product will be here. It will be up to the shop or farm to decide what descriptions and product specifications they will include. Just that this section is for that purpose
-                                
-                                One last paragraph to demonstrate this section of the page. This is where descriptions will go about the product. More may be said depending on the farm and the descriptions and information they include. It is up to them.
-                                """
-                            )
+                            TextParagraph(text: beanProduct.desc)
                             .padding(.bottom, 30)
                             
                             Divider()

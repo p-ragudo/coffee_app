@@ -13,18 +13,6 @@ struct BeanProduct: Identifiable {
 
 class BeanProductsProvider {
     static func getItems() -> [BeanProduct] {
-        // return [
-        //     // REPLACE EACH IMAGE AND NAVIGATION DESTINATION TO THE APPROPRIATE ONE
-        //     BeanProduct(image: "arabica_card", name: "1 nutricious and delicious bean product 1", price: 795.43, desc: "Description goes here in this section", rating: 4.6, numOfSold: 1500),
-        //     BeanProduct(image: "arabica_card", name: "2 nutricious and delicious bean product 2", price: 795.43, desc: "Description goes here in this section", rating: 4.6, numOfSold: 1500),
-        //     BeanProduct(image: "arabica_card", name: "3 nutricious and delicious bean product 3", price: 795.43, desc: "Description goes here in this section", rating: 4.6, numOfSold: 1500),
-        //     BeanProduct(image: "arabica_card", name: "4 nutricious and delicious bean product 4", price: 795.43, desc: "Description goes here in this section", rating: 4.6, numOfSold: 1500),
-        //     BeanProduct(image: "arabica_card", name: "5 nutricious and delicious bean product 5", price: 795.43, desc: "Description goes here in this section", rating: 4.6, numOfSold: 1500),
-        //     BeanProduct(image: "arabica_card", name: "6 nutricious and delicious bean product 6", price: 795.43, desc: "Description goes here in this section", rating: 4.6, numOfSold: 1500),
-        //     BeanProduct(image: "arabica_card", name: "7 nutricious and delicious bean product 7", price: 795.43, desc: "Description goes here in this section", rating: 4.6, numOfSold: 1500),
-        //     BeanProduct(image: "arabica_card", name: "8 nutricious and delicious bean product 8", price: 795.43, desc: "Description goes here in this section", rating: 4.6, numOfSold: 1500),
-        // ]
-
         return [
             BeanProduct(image: "arabica_card", name: "Sagada Arabica - Medium Roast", price: 220.00, desc: desc[0], rating: 4.8, numOfSold: 6750),
             BeanProduct(image: "arabica_card", name: "Benguet Arabica - Atok Origin", price: 230.00, desc: desc[1], rating: 4.7, numOfSold: 4200),
@@ -44,12 +32,12 @@ class BeanProductsProvider {
         ]
     }
 
-    private var desc: [String] = [
+    private static var desc: [String] = [
         // 1. Sagada Arabica - Medium Roast
         """
-        **Sagada Arabica** is a crown jewel of the Cordillera region, cherished for its smooth and exquisitely balanced profile. Grown at high altitudes in Mountain Province, these beans develop slowly, concentrating the nuanced flavors that make this coffee a Northern Luzon classic. It's the perfect daily drinker for those who appreciate finesse over force.
-        The flavor profile is characterized by **mild acidity** and a **nutty-sweetness**, often exhibiting undertones of caramel and citrus fruit. The medium roast ensures that the delicate, complex aromas of the Arabica bean are fully preserved and highlighted, resulting in a clean and exceptionally drinkable cup that invites repeated sips.
-        This is a versatile coffee that shines whether brewed in a French press, pour-over, or drip machine. It represents the best of Philippine Arabica tradition—a fragrant, sweet, and approachable coffee experience that truly reflects the misty mountain air of its origin.
+        Sagada Arabica is a crown jewel of the Cordillera region, cherished for its smooth and exquisitely balanced profile. Grown at high altitudes in Mountain Province, these beans develop slowly, concentrating the nuanced flavors that make this coffee a Northern Luzon classic. It's the perfect daily drinker for those who appreciate finesse over force.
+        \nThe flavor profile is characterized by **mild acidity** and a **nutty-sweetness**, often exhibiting undertones of caramel and citrus fruit. The medium roast ensures that the delicate, complex aromas of the Arabica bean are fully preserved and highlighted, resulting in a clean and exceptionally drinkable cup that invites repeated sips.
+        \nThis is a versatile coffee that shines whether brewed in a French press, pour-over, or drip machine. It represents the best of Philippine Arabica tradition—a fragrant, sweet, and approachable coffee experience that truly reflects the misty mountain air of its origin.
         """,
         
         // 2. Benguet Arabica - Atok Origin

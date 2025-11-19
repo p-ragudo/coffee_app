@@ -15,10 +15,6 @@ struct CartView: View {
         return currentAccount?.storeCartItems ?? []
     }
     
-    var selectedBeanCartItems: [BeanCartItem] {
-        beanCartItems.filter { $0.isSelected }
-    }
-    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -66,20 +62,78 @@ struct CartView: View {
                 } // ScrollView
                 .background(Color.black)
                 
+//                VStack {
+//                    Spacer()
+//                    
+//                    ForEach(beanCartItems.filter {$0.isSelected == true}, id: \.name) { item in
+//                        rowElement(name: item.name, total: item.totalPrice)
+//                            .padding(.bottom, 3)
+//                    }
+//                    ForEach(storeCartItems.filter {$0.isSelected == true}, id: \.name) { item in
+//                        rowElement(name: item.name, total: item.totalPrice)
+//                    }
+//                }
+//                .padding(.horizontal)
+//                .padding(.bottom)
+                
                 VStack {
                     Spacer()
                     
-                    ForEach(beanCartItems, id: \.name) { item in
-                        rowElement(name: item.name, total: item.totalPrice)
+                    HStack {
+                        TextSection(
+                            text: "Total:",
+                            color: ThemeColor.brown
+                        )
+                        
+                        Spacer()
+                        
+                        TextSection(
+                            text: "₱\(String(format: "%.2f", getTotal()))",
+                            color: ThemeColor.brown
+                        )
                     }
-                    ForEach(storeCartItems, id: \.name) { item in
-                        rowElement(name: item.name, total: item.totalPrice)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.horizontal)
+                    
+                    Button(action: {
+                        print("Buy Now tapped")
+                    }) {
+                        Text("Check Out (\(getNumOfSelected()))")
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity) // Take up equal space
+                            .padding()
+                            .background(ThemeColor.green)
                     }
                 }
+                .padding(.bottom, 20)
                 
             } // ZStack
         }
         .toolbarBackground(.black, for: .navigationBar)
+    }
+    
+    private func getTotal() -> Double {
+        let beanTotal = beanCartItems
+            .filter { $0.isSelected == true }
+            .reduce(0.0) { runningTotal, item in
+                runningTotal + item.totalPrice
+            }
+        
+        let storeTotal = storeCartItems
+            .filter { $0.isSelected == true }
+            .reduce(0.0) { runningTotal, item in
+                runningTotal + item.totalPrice
+            }
+        
+        return beanTotal + storeTotal
+    }
+    
+    private func getNumOfSelected() -> Int {
+        let beanCount = beanCartItems.filter {$0.isSelected == true}.count
+        let storeCount = storeCartItems.filter {$0.isSelected == true}.count
+        
+        return beanCount + storeCount
     }
 }
 
@@ -87,11 +141,26 @@ struct rowElement: View {
     var name: String
     var total: Double
     
+    private let characterLimit = 30
+
+    private var limitedName: String {
+        if name.count > characterLimit {
+            let endIndex = name.index(name.startIndex, offsetBy: characterLimit)
+            return String(name[..<endIndex]) + "..."
+        }
+        return name
+    }
+    
     var body: some View {
         HStack {
-            TextParagraph(text: name)
+            TextParagraph(text: limitedName)
+                .lineLimit(1)
+                .truncationMode(.tail)
+            
             Spacer()
+            
             TextParagraph(text: String(format: "%.2f", total))
+                .lineLimit(1)
         } // HStack
     }
 }
