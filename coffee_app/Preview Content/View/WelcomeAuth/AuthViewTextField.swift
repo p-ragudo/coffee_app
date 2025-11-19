@@ -51,7 +51,7 @@ struct AuthTextField: View {
                         .foregroundStyle(.white)
                         .padding(.vertical, 15)
                         .disableAutocorrection(true)
-                        .padding(.leading, icon != nil ? (iconSize + iconTextPadding) : 15)
+                        .padding(.leading, icon != nil ? (iconSize + iconTextPadding + 8) : 15)
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)

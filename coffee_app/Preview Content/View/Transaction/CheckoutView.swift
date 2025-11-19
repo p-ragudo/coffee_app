@@ -6,6 +6,8 @@ struct CheckoutView: View {
     @State private var fullAddress = ""
     
     @State private var showingAddressSheet = false
+    
+    private var account = Session.shared.loggedInAccount
 
     var body: some View {
         NavigationStack {
@@ -16,11 +18,26 @@ struct CheckoutView: View {
                 
                 NavigationLink(destination: AddressSheet()) {
                     HStack {
-                        TextSection(
-                            text: "Address",
-                            color: .gray
-                        )
-                            .padding()
+                        VStack(alignment: .leading) {
+                            TextSection(
+                                text: "Address",
+                                color: .gray
+                            )
+                            .padding(.top)
+                            .padding(.leading)
+                            
+                            TextParagraph(
+                                text: account?.addresses.isEmpty ?? true ? "No Address" :
+                                    "\(account?.addresses.first?.region ?? "") " +
+                                    ", \(account?.addresses.first?.city ?? "") " +
+                                    ", \(account?.addresses.first?.barangay ?? "") " +
+                                    ", \(account?.addresses.first?.street ?? "")",
+                                color: .gray
+                            )
+                            .padding(.bottom, 15)
+                            .padding(.leading)
+
+                        }
                         
                         Spacer()
                         
@@ -46,6 +63,7 @@ struct CheckoutView: View {
 
 struct AddressSheet: View {
     // State variables to hold the user input
+    @State private var name: String = ""
     @State private var region: String = ""
     @State private var province: String = ""
     @State private var city: String = ""
@@ -53,11 +71,30 @@ struct AddressSheet: View {
     @State private var street: String = ""
     @State private var zipCode: String = ""
     
+    @Environment(\.modelContext) private var context
+    
+    @State private var showAlert = false
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 
                 ScrollView {
+                    TextParagraph(
+                        text: "Name",
+                        size: 18
+                    )
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    AuthTextField(
+                        text: $name,
+                        hintText: "Name",
+                        plainField: true
+                    )
+                    .padding(.bottom, 15)
+                    
+                    
+                    
                     TextParagraph(
                         text: "Region",
                         size: 18
@@ -69,7 +106,7 @@ struct AddressSheet: View {
                         hintText: "Region",
                         plainField: true
                     )
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 15)
                     
                     
                     //
@@ -84,7 +121,7 @@ struct AddressSheet: View {
                         hintText: "Province",
                         plainField: true
                     )
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 15)
                     
                     
                     //
@@ -99,7 +136,7 @@ struct AddressSheet: View {
                         hintText: "City",
                         plainField: true
                     )
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 15)
                     
                     
                     //
@@ -114,7 +151,7 @@ struct AddressSheet: View {
                         hintText: "Barangay",
                         plainField: true
                     )
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 15)
                     
                     
                     //
@@ -130,6 +167,38 @@ struct AddressSheet: View {
                         plainField: true
                     )
                     .padding(.bottom, 20)
+                    
+                    Button( action: {
+                        Session.shared.loggedInAccount?.addresses.append(
+                            Address(
+                                name: name,
+                                region: region,
+                                province: province,
+                                city: city,
+                                barangay: barangay,
+                                street: street,
+                                zipCode: zipCode
+                            )
+                        )
+                        
+                        do {
+                            try context.save()
+                            showAlert = true
+                        } catch {
+                            print("Erro saving address: \(error)")
+                        }
+                    }) {
+                        Text("Save Address")
+                            .frame(maxWidth: .infinity)
+                            .font(.title2)
+                            .foregroundStyle(.white)
+                            .padding(.vertical, 10)
+                            .background(ThemeColor.green)
+                            .cornerRadius(5)
+                    }
+                    .alert(isPresented: $showAlert) {
+                        Alert(title: Text("Success"), message: Text("Successfully saved Address"), dismissButton: .default(Text("OK")))
+                    }
                     
                     
                     
