@@ -15,20 +15,23 @@ class BeanProductsProvider {
     static func getItems() -> [BeanProduct] {
         return [
             BeanProduct(image: "arabica_card", name: "Sagada Arabica - Medium Roast", price: 220.00, desc: desc[0], rating: 4.8, numOfSold: 6750),
-            BeanProduct(image: "arabica_card", name: "Benguet Arabica - Atok Origin", price: 230.00, desc: desc[1], rating: 4.7, numOfSold: 4200),
-            BeanProduct(image: "arabica_card", name: "Mt. Apo Arabica - Fully Washed", price: 410.00, desc: desc[2], rating: 4.9, numOfSold: 2980),
-            BeanProduct(image: "arabica_card", name: "Sultan Kudarat Arabica", price: 190.00, desc: desc[3], rating: 4.6, numOfSold: 3150),
+            BeanProduct(image: "1", name: "Benguet Arabica - Atok Origin", price: 230.00, desc: desc[1], rating: 4.7, numOfSold: 4200),
+            BeanProduct(image: "2", name: "Mt. Apo Arabica - Fully Washed", price: 410.00, desc: desc[2], rating: 4.9, numOfSold: 2980),
+            BeanProduct(image: "3", name: "Sultan Kudarat Arabica", price: 190.00, desc: desc[3], rating: 4.6, numOfSold: 3150),
             BeanProduct(image: "robusta_card", name: "Kalinga Robusta - Dark Roast", price: 110.00, desc: desc[4], rating: 4.5, numOfSold: 9800),
-            BeanProduct(image: "arabica_card", name: "Cavite Robusta - Double Roasted", price: 90.00, desc: desc[5], rating: 4.4, numOfSold: 8120),
-            BeanProduct(image: "arabica_card", name: "Ifugao Robusta", price: 130.00, desc: desc[6], rating: 4.5, numOfSold: 5500),
-            BeanProduct(image: "liberoca_card", name: "Batangas Barako (Liberica)", price: 280.00, desc: desc[7], rating: 4.9, numOfSold: 15300),
-            BeanProduct(image: "arabica_card", name: "Lipa Barako - Heritage", price: 320.00, desc: desc[8], rating: 4.8, numOfSold: 3550),
-            BeanProduct(image: "arabica_card", name: "Barako House Blend (L+R)", price: 150.00, desc: desc[9], rating: 4.7, numOfSold: 11200),
-            BeanProduct(image: "excelsa_card", name: "Excelsa - Single Origin Cavite", price: 160.00, desc: desc[10], rating: 4.6, numOfSold: 3700),
-            BeanProduct(image: "arabica_card", name: "Excelsa-Robusta Blend", price: 120.00, desc: desc[11], rating: 4.5, numOfSold: 5990),
-            BeanProduct(image: "arabica_card", name: "Pinoy Breakfast Blend", price: 80.00, desc: desc[12], rating: 4.6, numOfSold: 7100),
-            BeanProduct(image: "arabica_card", name: "Dark Side Blend", price: 470.00, desc: desc[13], rating: 4.4, numOfSold: 6320),
-            BeanProduct(image: "arabica_card", name: "Kape Maria Cordillera (Arabica)", price: 429.00, desc: desc[14], rating: 4.7, numOfSold: 2100)
+            BeanProduct(image: "4", name: "Cavite Robusta - Double Roasted", price: 90.00, desc: desc[5], rating: 4.4, numOfSold: 8120),
+            BeanProduct(image: "5", name: "Ifugao Robusta", price: 130.00, desc: desc[6], rating: 4.5, numOfSold: 5500),
+            BeanProduct(image: "liberica_card", name: "Batangas Barako (Liberica)", price: 280.00, desc: desc[7], rating: 4.9, numOfSold: 15300),
+            BeanProduct(image: "6", name: "Lipa Barako - Heritage", price: 320.00, desc: desc[8], rating: 4.8, numOfSold: 3550),
+            BeanProduct(image: "7", name: "Barako House Blend (L+R)", price: 150.00, desc: desc[9], rating: 4.7, numOfSold: 11200),
+            BeanProduct(image: "8", name: "Excelsa - Single Origin Cavite", price: 160.00, desc: desc[10], rating: 4.6, numOfSold: 3700),
+            BeanProduct(image: "9", name: "Excelsa-Robusta Blend", price: 120.00, desc: desc[11], rating: 4.5, numOfSold: 5990),
+            BeanProduct(image: "excelsa_card", name: "Pinoy Breakfast Blend", price: 80.00, desc: desc[12], rating: 4.6, numOfSold: 7100),
+            BeanProduct(image: "11", name: "Dark Side Blend", price: 470.00, desc: desc[13], rating: 4.4, numOfSold: 6320),
+            BeanProduct(image: "12", name: "Kape Maria Cordillera (Arabica)", price: 429.00, desc: desc[14], rating: 4.7, numOfSold: 2100),
+            BeanProduct(image: "13", name: "Barako Breakfast Blend", price: 80.00, desc: desc[15], rating: 4.6, numOfSold: 7100),
+            BeanProduct(image: "14", name: "Excelsa-Liberica Blend", price: 120.00, desc: desc[16], rating: 4.5, numOfSold: 5990),
+            
         ]
     }
 
@@ -136,6 +139,20 @@ class BeanProductsProvider {
         The **Kape Maria Cordillera** represents a specific tribute to the female farmers in the northern mountain region, celebrating the rich heritage of Philippine Arabica. It is carefully processed to be a **fragrant and balanced specialty coffee**, highlighting the best terroir characteristics.
         This medium-roasted Arabica features a profile that is both **delicate and complex**, with a pleasing, gentle aroma and sweet notes of vanilla and spice. It offers a smooth, medium body and a clean acidity that makes it highly enjoyable and easy to appreciate by any coffee drinker.
         This selection is often favored for its accessibility and superior quality. It's an excellent showcase of the potential of high-grown Philippine Arabica and serves well as a reliable, consistently delicious filter coffee or a gentle, aromatic espresso.
+        """,
+
+         // 16. Sultan Kudarat Arabica
+        """
+        Hailing from the lush, rich farmlands of **Sultan Kudarat**, this Arabica is quickly gaining acclaim for its delightful sweetness and comforting flavor profile. The region’s consistent climate and elevation provide ideal conditions for cultivating a bean that is both mellow and characteristically flavorful.
+        The primary characteristics are a **delightful chocolatey and sweet profile**, often likened to rich cocoa powder and brown sugar. It possesses a moderate body and smooth, round mouthfeel, making it incredibly easy to drink and instantly satisfying. It's a sweet indulgence without the need for added flavorings.
+        This coffee works wonderfully across many brewing applications, from a simple auto-drip machine to a moka pot. Its inherent sweetness and smooth nature make it a fantastic base for iced coffee preparations or a reliable, comforting brew for any time of the day.
+        """,
+
+         // 17. Pinoy Breakfast Blend
+        """
+        The **Pinoy Breakfast Blend** is a comforting, time-honored recipe designed to provide a gentle, yet invigorating start to the Filipino morning. It traditionally combines Arabica, Robusta, and a touch of Excelsa to achieve a balance of fragrance, body, and mild kick.
+        The flavor profile is **fragrant, balanced, and approachable**, featuring the smooth notes of Arabica, the body of Robusta, and a hint of the unique aroma from Excelsa. It's deliberately crafted to be the quintessential, easy-drinking, comforting morning coffee.
+        Priced affordably and designed for mass appeal, this blend is incredibly versatile. It can be brewed in large batches for family gatherings or enjoyed simply, often with a side of *pandesal*. It represents the warmth and simplicity of traditional Filipino coffee culture.
         """
     ]
 }
