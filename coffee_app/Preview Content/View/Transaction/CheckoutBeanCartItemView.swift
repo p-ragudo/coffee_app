@@ -24,7 +24,7 @@ struct CheckoutBeanCartItemView: View {
                 
                 Text("₱ \(String(format: "%.2f", item.totalPrice))")
                     .font(.system(size: 18).bold())
-                    .foregroundColor(ThemeColor.brown)            
+                    .foregroundColor(ThemeColor.brown)
                       
                 HStack {
                     TextParagraph(
@@ -41,8 +41,11 @@ struct CheckoutBeanCartItemView: View {
 
             } // VStack
             
+            Spacer()
+            
             TextParagraph(
-                text: item.quantity
+                text: "x \(item.quantity)",
+                size: 16
             )
             .padding(.trailing)
             
@@ -53,7 +56,7 @@ struct CheckoutBeanCartItemView: View {
     }
 }
 
-struct CartItemView_Previews: PreviewProvider {
+struct CheckoutCartItemView_Previews: PreviewProvider {
     static var previews: some View {
         CheckoutBeanCartItemView(item: BeanCartItem(
             name: "Dark Roast Coffee",

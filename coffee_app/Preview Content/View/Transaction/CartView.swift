@@ -15,6 +15,16 @@ struct CartView: View {
         return currentAccount?.storeCartItems ?? []
     }
     
+    
+    var selectedBeanCartItems: [BeanCartItem] {
+        return beanCartItems.filter { $0.isSelected == true }
+    }
+    var selectedStoreCartItems: [StoreCartItem] {
+        return storeCartItems.filter { $0.isSelected == true }
+    }
+    
+    @Environment(\.modelContext) private var context
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -62,20 +72,6 @@ struct CartView: View {
                 } // ScrollView
                 .background(Color.black)
                 
-//                VStack {
-//                    Spacer()
-//                    
-//                    ForEach(beanCartItems.filter {$0.isSelected == true}, id: \.name) { item in
-//                        rowElement(name: item.name, total: item.totalPrice)
-//                            .padding(.bottom, 3)
-//                    }
-//                    ForEach(storeCartItems.filter {$0.isSelected == true}, id: \.name) { item in
-//                        rowElement(name: item.name, total: item.totalPrice)
-//                    }
-//                }
-//                .padding(.horizontal)
-//                .padding(.bottom)
-                
                 VStack {
                     Spacer()
                     
@@ -104,6 +100,15 @@ struct CartView: View {
                             .frame(maxWidth: .infinity) // Take up equal space
                             .padding()
                             .background(ThemeColor.green)
+                            .onTapGesture {
+                                let transaction = Transaction(total: getTotal())
+                                transaction.beanCartItems.append(contentsOf: selectedBeanCartItems)
+                                transaction.storeCartItems.append(contentsOf: selectedStoreCartItems)
+                                
+                                Session.shared.loggedInAccount?.transactions.append(transaction)
+                                
+                                saveContext()
+                            }
                     }
                     .disabled(getNumOfSelected() == 0)
                 }
@@ -135,6 +140,14 @@ struct CartView: View {
         let storeCount = storeCartItems.filter {$0.isSelected == true}.count
         
         return beanCount + storeCount
+    }
+    
+    private func saveContext() {
+        do {
+            try context.save()
+        } catch {
+            print("Error saving transaction: \(error)")
+        }
     }
 }
 
