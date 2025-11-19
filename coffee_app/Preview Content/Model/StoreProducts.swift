@@ -43,82 +43,105 @@ class StoreProductsProvider {
     private static var desc: [String] = [
         // 1. Timemore C2 Max Manual Grinder
         """
-        A high-quality, entry-level manual grinder known for its incredible consistency. Featuring CNC stainless steel burrs and a sturdy aluminum alloy body, the C2 Max ensures a uniform grind size, crucial for any pour-over or French press method. Its capacity is ideal for brewing larger batches.
+        A high-quality, entry-level manual grinder known for its incredible consistency.
+        \nFeaturing CNC stainless steel burrs and a sturdy aluminum alloy body, the C2 Max ensures a uniform grind size, crucial for any pour-over or French press method.
+        \nIts capacity is ideal for brewing larger batches.
         """,
 
         // 2. Delonghi KG79 Electric Blade Grinder
         """
-        This electric blade grinder is a straightforward and reliable choice for quick grinding. While it's a blade grinder, the KG79 is excellent for quickly processing coffee for drip machines and French press, providing efficiency and a simple, push-button operation.
+        This electric blade grinder is a straightforward and reliable choice for quick grinding.
+        \nWhile it's a blade grinder, the KG79 is excellent for quickly processing coffee for drip machines and French press, providing efficiency and a simple, push-button operation.
         """,
 
         // 3. Comandante C40 MK4 Hand Grinder
         """
-        Considered the gold standard in manual grinding. The C40 MK4 is an exceptionally precise and robust hand grinder featuring high-nitrogen stainless steel burrs. It delivers unmatched grind quality across all ranges, from espresso fine to coarse cold brew, making it a favorite for coffee professionals.
+        Considered the gold standard in manual grinding.
+        \nThe C40 MK4 is an exceptionally precise and robust hand grinder featuring high-nitrogen stainless steel burrs.
+        \nIt delivers unmatched grind quality across all ranges, from espresso fine to coarse cold brew, making it a favorite for coffee professionals.
         """,
 
         // 4. Eureka Mignon Filtro Electric Grinder
         """
-        A dedicated electric grinder for filter coffee, boasting 50mm flat burrs for speed and consistency. The Mignon Filtro offers stepless micrometric adjustment for precise control over your grind size, making it a powerful and stylish addition to any serious home brewing setup.
+        A dedicated electric grinder for filter coffee, boasting 50mm flat burrs for speed and consistency.\n
+        The Mignon Filtro offers stepless micrometric adjustment for precise control over your grind size, making it a powerful and stylish addition to any serious home brewing setup.
         """,
 
         // 5. Hario V60 Pour Over Set (Size 02)
         """
-        The iconic Japanese pour-over system. This set includes the ceramic dripper and a serving carafe. The V60's large hole and spiral ribbing allow for a clean, nuanced, and flavorful cup of coffee, giving the brewer maximum control over flow rate and extraction.
+        The iconic Japanese pour-over system.\n
+        This set includes the ceramic dripper and a serving carafe. The V60's large hole and spiral ribbing allow for a clean, nuanced, and flavorful cup of coffee, giving the brewer maximum control over flow rate and extraction.
         """,
 
         // 6. Bodum Chambord French Press (8 Cup)
         """
-        The classic, timeless French press design. It's the simplest way to brew a rich, full-bodied coffee with a heavy mouthfeel. The 8-cup capacity is perfect for sharing, and the chrome frame with glass carafe makes it a beautiful countertop piece.
+        The classic, timeless French press design.
+        \nIt's the simplest way to brew a rich, full-bodied coffee with a heavy mouthfeel.
+        \nThe 8-cup capacity is perfect for sharing, and the chrome frame with glass carafe makes it a beautiful countertop piece.
         """,
 
         // 7. Chemex Classic 6-Cup Brewer
         """
-        The elegant, hourglass-shaped glass brewer known for its clarity and clean cup profile. When paired with Chemex bonded filters, it produces coffee free of sediments and bitterness, highlighting the delicate flavors of lighter roasts. A design icon in the coffee world.
+        The elegant, hourglass-shaped glass brewer known for its clarity and clean cup profile.
+        \nWhen paired with Chemex bonded filters, it produces coffee free of sediments and bitterness, highlighting the delicate flavors of lighter roasts.
+        \nA design icon in the coffee world.
         """,
 
         // 8. AeroPress Go Travel Coffee Maker
         """
-        A compact, durable, and versatile coffee maker perfect for travelers or small kitchens. The AeroPress uses air pressure for a fast, clean immersion brew, producing a surprisingly rich and low-acidity cup. The 'Go' version packs all components into a convenient travel mug.
+        A compact, durable, and versatile coffee maker perfect for travelers or small kitchens.
+        \nThe AeroPress uses air pressure for a fast, clean immersion brew, producing a surprisingly rich and low-acidity cup.
+        \nThe 'Go' version packs all components into a convenient travel mug.
         """,
 
         // 9. Breville Bambino Plus Espresso Machine
         """
-        A compact yet powerful home espresso machine capable of café-quality shots. It features a fast heat-up time and automatic milk texturing, making it easy to pull excellent espresso and create lattes or cappuccinos with rich microfoam.
+        A compact yet powerful home espresso machine capable of café-quality shots.
+        \nIt features a fast heat-up time and automatic milk texturing, making it easy to pull excellent espresso and create lattes or cappuccinos with rich microfoam.
         """,
 
         // 10. Cuisinart 12-Cup Programmable Drip
         """
-        A high-capacity, fully programmable drip machine ideal for households that need coffee ready at a set time. It features a brew-pause function and a sturdy glass carafe, making it a reliable workhorse for standard, large-batch filter coffee.
+        A high-capacity, fully programmable drip machine ideal for households that need coffee ready at a set time.
+        \nIt features a brew-pause function and a sturdy glass carafe, making it a reliable workhorse for standard, large-batch filter coffee.
         """,
 
         // 11. Bialetti Moka Express Stovetop (6 Cup)
         """
-        The original Italian stovetop espresso maker. The Moka pot produces a strong, concentrated coffee—not quite espresso, but darker and richer than drip. It’s an affordable and classic way to make potent, flavorful coffee at home.
+        The original Italian stovetop espresso maker.
+        \nThe Moka pot produces a strong, concentrated coffee—not quite espresso, but darker and richer than drip.
+        \nIt’s an affordable and classic way to make potent, flavorful coffee at home.
         """,
 
         // 12. Nespresso Pixie Espresso Machine
         """
-        An ultra-compact and fast single-serve capsule machine. The Pixie offers the convenience of quick espresso with minimal cleanup. Ideal for busy individuals seeking consistent, high-quality, one-touch coffee.
+        An ultra-compact and fast single-serve capsule machine.
+        \nThe Pixie offers the convenience of quick espresso with minimal cleanup.
+        \nIdeal for busy individuals seeking consistent, high-quality, one-touch coffee.
         """,
 
         // 13. Digital Pour-Over Coffee Scale
         """
-        A necessary tool for serious home brewing. This digital scale features a built-in timer, allowing you to accurately measure coffee grounds and water, ensuring consistency and precision in every pour-over or French press brew.
+        A necessary tool for serious home brewing.
+        \nThis digital scale features a built-in timer, allowing you to accurately measure coffee grounds and water, ensuring consistency and precision in every pour-over or French press brew.
         """,
 
         // 14. Gooseneck Electric Pour-Over Kettle
         """
-        Designed for pour-over brewing, the gooseneck spout provides ultimate control over the speed and placement of the water. This electric model offers precise temperature control, ensuring you hit the optimal temperature for extracting the best flavor.
+        Designed for pour-over brewing, the gooseneck spout provides ultimate control over the speed and placement of the water.
+        \nThis electric model offers precise temperature control, ensuring you hit the optimal temperature for extracting the best flavor.
         """,
 
         // 15. Hario V60 Glass Server (600ml)
         """
-        A durable, heat-resistant glass server used to collect and serve coffee brewed from a pour-over cone. Its classic design and measurement markings make it a perfect pairing for V60 or other small-to-medium-sized brewers.
+        A durable, heat-resistant glass server used to collect and serve coffee brewed from a pour-over cone.
+        \nIts classic design and measurement markings make it a perfect pairing for V60 or other small-to-medium-sized brewers.
         """,
 
         // 16. 58mm Calibrated Espresso Tamper
         """
-        A crucial accessory for espresso consistency. This tamper applies a calibrated amount of pressure, ensuring a level and perfectly compressed coffee bed, which is vital for achieving a balanced and optimal espresso extraction.
+        A crucial accessory for espresso consistency.
+        \nThis tamper applies a calibrated amount of pressure, ensuring a level and perfectly compressed coffee bed, which is vital for achieving a balanced and optimal espresso extraction.
         """,
     ]
 }
