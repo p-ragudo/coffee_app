@@ -8,56 +8,117 @@ struct CheckoutView: View {
     @State private var showingAddressSheet = false
     
     private var account = Session.shared.loggedInAccount
+    
+    var beanCartItems: [BeanCartItem] {
+        return account?.beanCartItems ?? []
+    }
+    var storeCartItems: [StoreCartItem] {
+        return account?.storeCartItems ?? []
+    }
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                TextPageTitle(text: "Checkout")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.bottom)
+            ZStack {
                 
-                NavigationLink(destination: AddressSheet()) {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            TextSection(
-                                text: "Address",
-                                color: .gray
-                            )
-                            .padding(.top)
-                            .padding(.leading)
-                            
-                            TextParagraph(
-                                text: account?.addresses.isEmpty ?? true ? "No Address" :
-                                    "\(account?.addresses.first?.region ?? "") " +
-                                    ", \(account?.addresses.first?.city ?? "") " +
-                                    ", \(account?.addresses.first?.barangay ?? "") " +
-                                    ", \(account?.addresses.first?.street ?? "")",
-                                color: .gray
-                            )
-                            .padding(.bottom, 15)
-                            .padding(.leading)
+                ScrollView {
+                    TextPageTitle(text: "Checkout")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.bottom)
+                    
+                    NavigationLink(destination: AddressSheet()) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                TextSection(
+                                    text: "Address",
+                                    color: .gray
+                                )
+                                .padding(.top)
+                                .padding(.leading)
+                                
+                                TextParagraph(
+                                    text: account?.addresses.isEmpty ?? true ? "No Address" :
+                                        "\(account?.addresses.first?.region ?? "") " +
+                                        ", \(account?.addresses.first?.city ?? "") " +
+                                        ", \(account?.addresses.first?.barangay ?? "") " +
+                                        ", \(account?.addresses.first?.street ?? "")",
+                                    color: .gray
+                                )
+                                .padding(.bottom, 15)
+                                .padding(.leading)
 
+                            }
+                            
+                            Spacer()
+                            
+                            Image(systemName: "plus")
+                                .font(.system(size: 16))
+                                .foregroundStyle(.gray)
+                                .padding(.trailing, 20)
                         }
-                        
-                        Spacer()
-                        
-                        Image(systemName: "plus")
-                            .font(.system(size: 16))
-                            .foregroundStyle(.gray)
-                            .padding(.trailing, 20)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(.black)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(.white, lineWidth: 1)
+                        )
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(.black)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 8)
-                            .stroke(.white, lineWidth: 1)
-                    )
-                }
+                    
+                } // ScrollView
+                .padding(.horizontal)
+                .background(.black)
                 
-            } // ScrollView
-            .padding(.horizontal)
-            .background(.black)
+                VStack {
+                    Spacer()
+
+                    ForEach(beanCartItems.filter {$0.isSelected == true}, id: \.name) { item in
+                        checkoutRowElement(name: item.name, total: item.totalPrice, beanCartItem: item)
+                            .padding(.bottom, 3)
+                    }
+                    ForEach(storeCartItems.filter {$0.isSelected == true}, id: \.name) { item in
+                        checkoutRowElement(name: item.name, total: item.totalPrice, storeCartItem: item)
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.bottom)
+                
+            } // ZStack
         } // NavigationStack
+    }
+}
+
+struct checkoutRowElement: View {
+    var name: String
+    var total: Double
+    var beanCartItem: BeanCartItem? = nil
+    var storeCartItem: StoreCartItem? = nil
+    
+    
+    private let characterLimit = 30
+
+    private var limitedName: String {
+        if name.count > characterLimit {
+            let endIndex = name.index(name.startIndex, offsetBy: characterLimit)
+            return String(name[..<endIndex]) + "..."
+        }
+        return name
+    }
+    
+    var body: some View {
+        HStack {
+            TextParagraph(text: limitedName)
+                .lineLimit(1)
+                .truncationMode(.tail)
+            
+            Spacer()
+            
+            TextParagraph(text: "x ")
+            TextParagraph(text: beanCartItem == nil ? "" : "\(beanCartItem!.quantity)")
+            TextParagraph(text: storeCartItem == nil ? "" : "\(storeCartItem!.quantity)")
+                .padding(.trailing, 3)
+            
+            TextParagraph(text: String(format: "%.2f", total))
+                .lineLimit(1)
+        } // HStack
     }
 }
 
