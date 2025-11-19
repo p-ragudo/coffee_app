@@ -3,16 +3,17 @@ import SwiftUI
 struct AuthTextField: View {
     @Binding var text: String
     let hintText: String
-    let icon: Image
+    var icon: Image? = nil
     var iconTextPadding: CGFloat = 15
     var iconSize: CGFloat = 20
     var secureField: Bool = false
+    var plainField: Bool = false
     
     var body: some View {
         ZStack(alignment: .leading) {
             // icon and placeholder text
             HStack {
-                icon
+                icon?
                     .resizable()
                     .scaledToFit()
                     .frame(width: iconSize, height: iconSize)
@@ -23,7 +24,7 @@ struct AuthTextField: View {
                     Text(hintText)
                         .font(.system(size: 16, weight: .light, design: .serif))
                         .foregroundStyle(.white)
-                        .padding(.leading, 0)
+                        .padding(.leading, plainField == false ? 0 : 15)
                         .padding(.vertical, 15)
                 }
             } // HStack
@@ -50,7 +51,7 @@ struct AuthTextField: View {
                         .foregroundStyle(.white)
                         .padding(.vertical, 15)
                         .disableAutocorrection(true)
-                        .padding(.leading, iconSize + iconTextPadding + 8)
+                        .padding(.leading, icon != nil ? (iconSize + iconTextPadding) : 15)
                         .cornerRadius(10)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)

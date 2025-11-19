@@ -93,11 +93,11 @@ struct CartView: View {
                         )
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.vertical)
+                    .background(.black)
                     .padding(.horizontal)
                     
-                    Button(action: {
-                        print("Buy Now tapped")
-                    }) {
+                    NavigationLink(destination: CheckoutView()) {
                         Text("Check Out (\(getNumOfSelected()))")
                             .font(.headline)
                             .foregroundColor(.white)
@@ -105,6 +105,7 @@ struct CartView: View {
                             .padding()
                             .background(ThemeColor.green)
                     }
+                    .disabled(getNumOfSelected() == 0)
                 }
                 .padding(.bottom, 20)
                 
