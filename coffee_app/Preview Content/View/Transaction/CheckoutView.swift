@@ -24,6 +24,9 @@ struct CheckoutView: View {
     var selectedStoreCartItems: [StoreCartItem] {
         return storeCartItems.filter { $0.isSelected == true }
     }
+    
+    @State private var goToConfirmation = false
+    @State private var recentTransaction: Transaction? = nil
 
     var body: some View {
         NavigationStack {
@@ -74,12 +77,15 @@ struct CheckoutView: View {
                         )
                     }
                     
-                    ForEach(beanCartItems.filter {$0.isSelected == true}, id: \.name) { item in
-                        CheckoutBeanCartItemView(item: item)
-                    }
-                    ForEach(storeCartItems.filter {$0.isSelected == true}, id: \.name) { item in
-                        CheckoutStoreCartItemView(item: item)
-                    }
+                    VStack {
+                        ForEach(beanCartItems.filter {$0.isSelected == true}, id: \.name) { item in
+                            CheckoutBeanCartItemView(item: item)
+                        }
+                        ForEach(storeCartItems.filter {$0.isSelected == true}, id: \.name) { item in
+                            CheckoutStoreCartItemView(item: item)
+                        }
+                    } // VStack
+                    .padding(.bottom, 60 * CGFloat(getNumOfSelected()))
                     
                 } // ScrollView
                 .padding(.horizontal)
@@ -89,7 +95,7 @@ struct CheckoutView: View {
                 VStack {
                     Spacer()
                     
-                    Group {
+                    VStack {
                         ForEach(beanCartItems.filter {$0.isSelected == true}, id: \.name) { item in
                             checkoutRowElement(name: item.name, total: item.totalPrice, beanCartItem: item)
                                 .padding(.bottom, 3)
@@ -97,9 +103,8 @@ struct CheckoutView: View {
                         ForEach(storeCartItems.filter {$0.isSelected == true}, id: \.name) { item in
                             checkoutRowElement(name: item.name, total: item.totalPrice, storeCartItem: item)
                         }
-                    }
+                    } // Vstack
                     .background(.black)
-                    .padding(.horizontal)
                     
                     HStack {
                         TextSection(
@@ -119,28 +124,42 @@ struct CheckoutView: View {
                     .background(.black)
                     .padding(.horizontal)
                     
-                    NavigationLink(destination: ConfirmationView()) {
+                    if let t = recentTransaction {
+                        NavigationLink(
+                            destination: ConfirmationView(transaction: t),
+                            isActive: $goToConfirmation
+                        ) {
+                            EmptyView()
+                        }
+                    }
+                    
+                    Button {
+                        let transaction = Transaction(total: getTotal())
+                        transaction.beanCartItems.append(contentsOf: selectedBeanCartItems)
+                        transaction.storeCartItems.append(contentsOf: selectedStoreCartItems)
+
+                        Session.shared.loggedInAccount?.transactions.append(transaction)
+                        saveContext()
+
+                        recentTransaction = transaction
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            goToConfirmation = true
+                        }
+                    } label: {
                         Text("Place Order")
                             .font(.headline)
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(ThemeColor.green)
-                            .onTapGesture {
-                                let transaction = Transaction(total: getTotal())
-                                transaction.beanCartItems.append(contentsOf: selectedBeanCartItems)
-                                transaction.storeCartItems.append(contentsOf: selectedStoreCartItems)
-                                
-                                Session.shared.loggedInAccount?.transactions.append(transaction)
-                                
-                                saveContext()
-                            }
                     }
                 }
-                .padding(.bottom, 20)
+                .padding(.bottom, 5)
                 
             } // ZStack
         } // NavigationStack
+        .toolbarBackground(.black, for: .navigationBar)
     }
     
     private func getTotal() -> Double {
@@ -157,6 +176,14 @@ struct CheckoutView: View {
             }
         
         return beanTotal + storeTotal
+    }
+    
+    
+    private func getNumOfSelected() -> Int {
+        let beanCount = beanCartItems.filter {$0.isSelected == true}.count
+        let storeCount = storeCartItems.filter {$0.isSelected == true}.count
+        
+        return beanCount + storeCount
     }
     
     private func saveContext() {

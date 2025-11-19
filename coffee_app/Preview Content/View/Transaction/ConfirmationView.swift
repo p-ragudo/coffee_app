@@ -5,17 +5,14 @@ struct ConfirmationView: View {
     let transaction: Transaction
     let beanCartItems: [BeanCartItem]
     let storeCartItems: [StoreCartItem]
+    let totalAsString: String
     
-    init() {
+    init(transaction: Transaction) {
         // Make sure `transaction` is safely unwrapped
-        guard let lastTransaction = Session.shared.loggedInAccount?.transactions.last else {
-            // Handle error case if no transaction is available
-            fatalError("No transactions available.")
-        }
-        
-        transaction = lastTransaction
+        self.transaction = transaction
         beanCartItems = transaction.beanCartItems
         storeCartItems = transaction.storeCartItems
+        totalAsString = String(format: "Total:  ₱ %.2f", transaction.total)
     }
     
     var body: some View {
@@ -49,8 +46,24 @@ struct ConfirmationView: View {
                     }
                     .background(.black)
                     .padding(.horizontal)
+                    
+                    TextSection(
+                        text: totalAsString,
+                        color: ThemeColor.brown
+                    )
+                    .padding(.top)
                 } // ScrollView
                 .background(Color.black)
+                
+                VStack {
+                    Spacer()
+                    NavigationLink(destination: FloatingTabBarView(selectedTab: Tab.home)) {
+                        TextSection(text: "Back to Home")
+                            .padding()
+                            .background(ThemeColor.green)
+                            .padding(.bottom)
+                    }
+                } // VStack
         
                 
             } // ZStack

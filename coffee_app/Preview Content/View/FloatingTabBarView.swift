@@ -36,14 +36,6 @@ struct FloatingTabBarView: View {
                 .tag(1)
 
                 NavigationStack {
-                    FarmsView()
-                }
-                    .tabItem {
-                        Image(systemName: "leaf.fill")
-                    }
-                    .tag(2)
-
-                NavigationStack {
                     StoreView()
                 }
                     .tabItem {
@@ -66,8 +58,7 @@ struct FloatingTabBarView: View {
                 Spacer() // Push tab bar to bottom
                 HStack {
                     TabBarIcon(isSelected: selectedTab == 0, imageName: "house.fill", action: { selectedTab = 0 })
-                    TabBarIcon(isSelected: selectedTab == 1, imageName: "star.fill", action: { selectedTab = 1 })
-                    TabBarIcon(isSelected: selectedTab == 2, imageName: "leaf.fill", action: { selectedTab = 2 })
+                    TabBarIcon(isSelected: selectedTab == 1, imageName: "leaf.fill", action: { selectedTab = 1 })
                     TabBarIcon(isSelected: selectedTab == 3, imageName: "bag.fill", action: { selectedTab = 3 })
                     TabBarIcon(isSelected: selectedTab == 4, imageName: "cart", action: { selectedTab = 4 })
                 }

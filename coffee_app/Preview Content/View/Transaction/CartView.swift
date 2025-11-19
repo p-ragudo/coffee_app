@@ -23,6 +23,7 @@ struct CartView: View {
         return storeCartItems.filter { $0.isSelected == true }
     }
     
+    @State private var goToCheckout = false
     @Environment(\.modelContext) private var context
     
     var body: some View {
@@ -69,6 +70,7 @@ struct CartView: View {
                     }
                     .padding(.horizontal)
                     .frame(maxWidth: .infinity)
+                    .padding(.bottom, 40 * CGFloat(beanCartItems.count))
                 } // ScrollView
                 .background(Color.black)
                 
@@ -93,24 +95,26 @@ struct CartView: View {
                     .background(.black)
                     .padding(.horizontal)
                     
-                    NavigationLink(destination: CheckoutView()) {
+                    NavigationLink(destination: CheckoutView(), isActive: $goToCheckout) {
                         Text("Check Out (\(getNumOfSelected()))")
                             .font(.headline)
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity) // Take up equal space
                             .padding()
                             .background(ThemeColor.green)
-                            .onTapGesture {
-                                let transaction = Transaction(total: getTotal())
-                                transaction.beanCartItems.append(contentsOf: selectedBeanCartItems)
-                                transaction.storeCartItems.append(contentsOf: selectedStoreCartItems)
-                                
-                                Session.shared.loggedInAccount?.transactions.append(transaction)
-                                
-                                saveContext()
-                            }
                     }
                     .disabled(getNumOfSelected() == 0)
+                    .onTapGesture {
+                        let transaction = Transaction(total: getTotal())
+                        transaction.beanCartItems.append(contentsOf: selectedBeanCartItems)
+                        transaction.storeCartItems.append(contentsOf: selectedStoreCartItems)
+                        
+                        Session.shared.loggedInAccount?.transactions.append(transaction)
+                        
+                        saveContext()
+                        
+                        goToCheckout = true
+                    }
                 }
                 .padding(.bottom, 20)
                 

@@ -55,35 +55,6 @@ struct HomeView: View {
                     MoreButton(navigateTo: AnyView(FloatingTabBarView(selectedTab: Tab.beans)))
                         .padding(.bottom, 50)
                     
-                    
-                    // FARMS SECTION
-                    Text("Farms")
-                        .font(.system(size: 30, weight: .semibold, design: .serif))
-                        .foregroundStyle(.white)
-                        .padding(.top, 5)
-                        .padding(.horizontal)
-                    Text("Our partner local farms")
-                        .font(.system(size: 15, weight: .light, design: .serif))
-                        .foregroundStyle(.white)
-                        .padding(.horizontal)
-                        .padding(.bottom, 10)
-                    
-                    Image("farm_card")
-                        .resizable()
-                        .scaledToFit()
-                        .padding(.bottom, 10)
-                        
-                    Text("Our partner local farms")
-                        .font(.system(size: 16, weight: .light, design: .serif))
-                        .foregroundStyle(.white)
-                        .padding(.horizontal)
-                        .padding(.bottom, 40)
-                    
-                    // REPLACE NAVIGATION DESTINATION
-                    MoreButton(navigateTo: AnyView(WelcomeView()))
-                        .padding(.bottom, 50)
-                    
-                    
                     // STORE SECTION
                     Text("Store")
                         .font(.system(size: 30, weight: .semibold, design: .serif))
