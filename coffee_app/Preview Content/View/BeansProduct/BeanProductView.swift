@@ -214,16 +214,15 @@ struct BeanProductView: View {
                             Alert(title: Text("Success"), message: Text("Successfully Added to Cart"), dismissButton: .default(Text("OK")))
                         }
                         
-                        Button(action: {
-                            print("Buy Now tapped")
-                        }) {
+
+                        NavigationLink(destination: CartView(), label: {
                             Text("Buy Now")
                                 .font(.headline)
                                 .foregroundColor(.white)
                                 .frame(maxWidth: .infinity) // Take up equal space
                                 .padding()
                                 .background(ThemeColor.green)
-                        }
+                        })
                     }
                     .padding(.bottom, 20) // Space from the bottom edge
                     .background(Color.black) // Tab bar background color

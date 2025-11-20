@@ -65,7 +65,6 @@ struct FloatingTabBarView: View {
                     TabBarIcon(isSelected: selectedTab == 1, imageName: "leaf.fill", action: { selectedTab = 1 })
                     TabBarIcon(isSelected: selectedTab == 3, imageName: "bag.fill", action: { selectedTab = 3 })
                     TabBarIcon(isSelected: selectedTab == 4, imageName: "cart", action: { selectedTab = 4 })
-                    TabBarIcon(isSelected: selectedTab == 5, imageName: "person.fill", action: { selectedTab = 5 })
                 }
                 .padding()
                 .background(Color.black) // Tab bar background color

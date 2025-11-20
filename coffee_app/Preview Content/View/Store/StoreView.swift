@@ -30,18 +30,6 @@ struct StoreView: View {
                     .padding(.horizontal)
                     .padding(.bottom, 40)
                     
-                    // FIND YOUR FLAVOUR SECTION
-                    TextSection(text: "Exclusive Offers")
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.bottom, 5)
-                    
-                    Image("store_bg")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: .infinity)
-                        .padding(.bottom, 40)
-                    
                     // ImageSliderView()
                     
                     Text("Best Sellers")
